@@ -5,19 +5,20 @@ import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation"; // Import the useSearchParams hook  
 import { SignInFlow } from "../../types/auth-types";
 import AuthScreen from "@/components/auth/AuthScreen";
+import Empauthscreen from "@/components/Empauth/Empauthscreen";
 
 
 
-export default function AuthPage() {  
+export default function Employeeauth() {  
   const searchParams = useSearchParams(); // Use the useSearchParams hook  
   const formType = searchParams.get("authtype") as SignInFlow; // Access authType from searchParams  
   const session = useSession();  
   const router = useRouter(); 
   console.log(session);   
 
-  // if (session.status === "authenticated") {  
-  //   router.push("/dashboard"); // Use router.push without return  
-  // }  
+//   if (session.status === "authenticated") {  
+//     router.push("/dashboard"); // Use router.push without return  
+//   }  
 
-  return <AuthScreen authtype={formType} />;  
+  return <Empauthscreen authtype={formType} />;  
 }

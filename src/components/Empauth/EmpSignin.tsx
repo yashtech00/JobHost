@@ -13,32 +13,32 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { SignInFlow } from "../../types/auth-types"; // Ensure correct path and type imports
+import { SignInFlow } from "../../types/auth-types";
 import { signIn } from "next-auth/react";
+
 import { useRouter } from "next/navigation";
 
 interface SignupProp {
-  setFormType: (state: SignInFlow) => void; // Defining prop type for form type
+  setFormType: (state: SignInFlow) => void;
 }
 
-export default function SignUpcard({ setFormType: setState }: SignupProp) {
-  const [name, setName] = useState("");
+export default function EmpSignIncard({ setFormType: setState }: SignupProp) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [pending, setPending] = useState(false);
-  const router = useRouter(); 
-
+  const router = useRouter();
 
   const signinWithProvider = async (provider: "github" | "credentials") => {
-   
     try {
       if (provider === "credentials") {
         const res = signIn(provider, {
-          email,
-          password,
-          redirect: false,
-          callbackUrl: "/boarding",
+          data: {
+            email,
+            password,
+            redirect: false,
+            callbackUrl: "/empboarding",
+          },
         });
         res.then((res) => {
           if (res?.error) {
@@ -52,32 +52,31 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
       }
       if (provider === "github") {
         const res = signIn(provider, {
-          redirect: false,
-          callbackUrl: "/boarding",
+          data: {
+            redirect: false,
+            callbackUrl: "/empboarding",
+          },
         });
         res.then((res) => {
           if (res?.error) {
-            console.error(res.error);
-            
             setError(res.error);
           }
-          console.log(res);
           setPending(false);
         });
       }
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.error(err);
     }
   };
 
-  const handleCredentials = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleCredentials = (e) => {
     e.preventDefault();
-    setError(""); // Clear previous errors
+    setError("");
+    setPending(true);
     signinWithProvider("credentials");
   };
-
   const handleGithub = (provider: "github") => {
-    setError(""); // Clear previous errors
+    setError("");
     setPending(true);
     signinWithProvider(provider);
   };
@@ -87,26 +86,29 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
       <Card className="w-full max-w-md bg-zinc-900 border-zinc-800">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold tracking-tight text-white">
-            Join us
+            Welcome Back!
           </CardTitle>
           <CardTitle className="text-2xl font-bold tracking-tight text-white">
-            Create a HackerRank account
+            Login to your account
           </CardTitle>
-          <CardDescription className="text-zinc-400 mt-4">
-            Be part of a 23 million-strong community of developers
+          <CardDescription className="text-zinc-400 text-5xl">
+            It's nice to see you again. Ready to get job?
           </CardDescription>
         </CardHeader>
-        {error && <div className="text-red-600 text-center">{error}</div>}{" "}
-        {/* Error message display */}
         <CardContent className="space-y-4">
-          <Button
-            variant="outline"
-            className="w-full bg-zinc-800 hover:bg-zinc-700 text-white border-zinc-700"
-            disabled={pending}
-            onClick={() => handleGithub("github")}
-          >
-            <Github className="mr-2 h-4 w-4" /> Continue with GitHub
-          </Button>
+          <div className="space-y-2">
+            <Button
+              variant="outline"
+              className="w-full bg-zinc-800 hover:bg-zinc-700 text-white border-zinc-700"
+              disabled={pending}
+              onClick={() => {
+                handleGithub("github");
+              }}
+            >
+              <Github className="mr-2 h-4 w-4" />
+              Continue with GitHub
+            </Button>
+          </div>
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t border-zinc-700" />
@@ -119,20 +121,6 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
           </div>
           <form onSubmit={handleCredentials} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-white">
-                Name
-              </Label>
-              <Input
-                value={name}
-                type="text"
-                placeholder="John Doe"
-                disabled={pending}
-                required
-                className="bg-zinc-800 border-zinc-700 text-white placeholder:text-zinc-500"
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div className="space-y-2">
               <Label htmlFor="email" className="text-white">
                 Email
               </Label>
@@ -143,7 +131,9 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
                 disabled={pending}
                 required
                 className="bg-zinc-800 border-zinc-700 text-white placeholder:text-zinc-500"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
               />
             </div>
             <div className="space-y-2">
@@ -157,13 +147,15 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
                 placeholder="*******"
                 required
                 className="bg-zinc-800 border-zinc-700 text-white"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               />
             </div>
             <Button
               type="submit"
               className="w-full bg-emerald-600 hover:bg-emerald-500 text-white"
-              disabled={pending} // Maintain button state based on pending
+              disabled={pending}
             >
               {pending ? "Creating account..." : "Create account"}
             </Button>
@@ -171,12 +163,12 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
         </CardContent>
         <CardFooter>
           <p className="text-sm text-gray-400">
-            Already have an account?{" "}
+            Don't have an account?{" "}
             <span
               className="cursor-pointer text-teal-500 hover:underline"
-              onClick={() => setState("signIn")} // Switch to sign-in state
+              onClick={() => setState("signUp")}
             >
-              Sign in
+              Sign up
             </span>
           </p>
         </CardFooter>

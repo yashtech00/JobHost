@@ -21,7 +21,7 @@ interface SignupProp {
   setFormType: (state: SignInFlow) => void; // Defining prop type for form type
 }
 
-export default function SignUpcard({ setFormType: setState }: SignupProp) {
+export default function EmpSignUpcard({ setFormType: setState }: SignupProp) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,7 +38,7 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
           email,
           password,
           redirect: false,
-          callbackUrl: "/boarding",
+          callbackUrl: "/empboarding",
         });
         res.then((res) => {
           if (res?.error) {
@@ -53,7 +53,7 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
       if (provider === "github") {
         const res = signIn(provider, {
           redirect: false,
-          callbackUrl: "/boarding",
+          callbackUrl: "/empboarding",
         });
         res.then((res) => {
           if (res?.error) {

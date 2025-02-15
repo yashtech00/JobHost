@@ -22,8 +22,18 @@ model User {
   jobs        Job[]
   applicant   Applicant[]
   userprofile UserProfile[]
+  employee Employee[]
 }
 
+model Employee{
+  id String @id @default(uuid())
+  name String
+  email String @unique
+  companyname String
+  phonenumber String
+  userId String
+  user User @relation(fields: [userId],references: [id])
+}
 model Job {
   id          String      @id @default(uuid())
   title       String
@@ -50,8 +60,17 @@ model Applicant {
 
 model UserProfile {
   id               String     @id @default(uuid())
-  username         String     @unique
-  name             String
+
+  username         String     
+  email            String @unique
+  firstName        String
+  lastName         String
+  country          String
+  streetAddress    String
+  city             String
+  state            String
+  postalCode       String
+
   workingYear      Int
   workingMonth     Int
   currentLocations String
@@ -62,7 +81,8 @@ model UserProfile {
   profilePic       String?
   preferedJobTitle String
   preferedLocation String
-  skills           String[]
+  skills           String
+
   userId           String
   user             User?      @relation(fields: [userId], references: [id])
 }

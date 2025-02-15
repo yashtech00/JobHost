@@ -10,6 +10,7 @@ import bcrypt from "bcryptjs";
 import { NextAuthOptions, Session } from "next-auth";
 import { JWT } from "next-auth/jwt";
 export const authoptions = {
+  
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID ?? "",
@@ -113,7 +114,7 @@ export const authoptions = {
             if(user){
                 session.user.id = user.id;
             }
-        
+            
         }catch(error){
             console.log(error);
             throw new Error("Internal server error")  
@@ -122,30 +123,33 @@ export const authoptions = {
     },
     async signIn({account, profile}){
         try{
-            if(account?.provider == "Github"){
+          console.log("before signin");
+          console.log(account,"github account");
+          console.log(profile,"profile account");
+          
+          if (account?.provider === "github" && profile) {
                 const user = await prisma.user.findUnique({
                     where:{
                         email:profile?.email
                     }
                 })
+                console.log("after sigin");
+                
                 if(!user){
                     const newUser = await prisma.user.create({
                         data:{
                             email:profile?.email ?? "",
-                            name:profile?.name,
+                            name:profile?.name || undefined,
                             provider:"Github"
                         }
                     });
+                    console.log(newUser,"yash newuser");
                 }
             }
-            return true
-            
+            return true      
         }catch(error){
-            console.log(error);
-            
+            console.log(error); 
             return false;
-            // throw new Error("internal server error")
-            
         }
     }
   },

@@ -1,15 +1,16 @@
 import Appbar from "@/components/Appbar";
+import { FormProvider } from "@/components/boardingAll/FormContext";
 import { Stepper } from "@/components/boardingAll/stepper";
-import WelcomeBoarding from "@/components/boardingAll/WelcomeBoarding";
 
-
-
-export default function Boarding(){
-    return <div className="flex min-h-screen flex-col ">
-        <Appbar/>
-        <div>
-            
-        <Stepper/>
-        </div>
-        </div>
+export default function Boarding() {
+  return (
+    <div className=" ">
+      <Appbar />
+      <FormProvider>
+      <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <Stepper />
+      </div>
+    </FormProvider>
+    </div>
+  );
 }

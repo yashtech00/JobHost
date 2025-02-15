@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import Joblist from "./joblist";
+
 import { Button } from "./ui/button";
 import { CardContent } from "./ui/card";
 import axios from "axios";
+import { JobCard } from "./jobcard";
 export default function Jobs() {
   const [search, setSearch] = useState("");
   const [alljob, setAlljob] = useState([]);
@@ -10,14 +11,23 @@ export default function Jobs() {
   async function refreshjobs() {
     try {
       const res = await fetch("/api/jobstream", {
+        method: "GET",
         credentials: "include",
       });
       const json = await res.json();
-      setAlljob(json);
+
+      console.log("API Response:", json); // Debugging log
+
+      if (Array.isArray(json)) {
+        setAlljob(json);
+      } else {
+        setAlljob([]); // Ensure it's always an array
+      }
     } catch (e) {
       console.error(e);
     }
   }
+
   useEffect(() => {
     refreshjobs();
   }, []);
@@ -32,12 +42,12 @@ export default function Jobs() {
             <div>filter card salary jobtype skill location</div>
 
             <div>
-                {alljob.map((jobmap)=>(
-                    <div key={jobmap}>
-                        <Joblist jobs={jobmap} />
-                    </div>
+              {Array.isArray(alljob) &&
+                alljob.map((job) => (
+                  <div key={job.id || job.title}>
+                    <JobCard job={job} />
+                  </div>
                 ))}
-              
             </div>
           </div>
         </div>
