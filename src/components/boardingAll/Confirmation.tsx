@@ -1,6 +1,7 @@
 import React from 'react';
 import { useFormContext } from './FormContext';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 interface ConfirmationProps {
   onBack: () => void;
@@ -11,6 +12,7 @@ export const Confirmation: React.FC<ConfirmationProps> = ({ onBack }) => {
   const { personalInfo, accountInfo } = formData;
     console.log(accountInfo,"yashacc");
     const router =useRouter();
+    const session = useSession();
     
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -39,6 +41,7 @@ export const Confirmation: React.FC<ConfirmationProps> = ({ onBack }) => {
 
   return (
     <div className="mx-auto max-w-5xl">
+        {/* {!session?.data?.user && (  */}
       <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-xl p-8">
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
@@ -215,6 +218,7 @@ export const Confirmation: React.FC<ConfirmationProps> = ({ onBack }) => {
           </div>
         </div>
       </form>
+      {/* )} */}
     </div>
   );
 };

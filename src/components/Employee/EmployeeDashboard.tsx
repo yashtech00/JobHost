@@ -1,48 +1,62 @@
 "use client"
 import React, { useState } from 'react';
-import { Building2, MapPin, Briefcase, DollarSign, GraduationCap, Clock, FileText } from 'lucide-react';
+import { Building2, MapPin, Briefcase, DollarSign, Clock, FileText } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
-interface JobFormData {
-  title: string;
-  description: string;
-  company: string;
-  jobtype: string;
-  location: string;
-  salary: string;
-  skill: string;
-}
+
+
 
 export function Empjobpost({onJobCreated}) {
-  const [formData, setFormData] = useState<JobFormData>({
+  const [formData, setFormData] = useState<Jobtypeprop>({
+    id:'',
     title: '',
     description: '',
     company: '',
-    jobtype: '',
+    jobtype: "",
     location: '',
     salary: '',
-    skill: '',
+    createdAt:new Date()
   });
 
+  const router = useRouter();
+  
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
+
     // TODO: Implement job posting logic
     try{
+        console.log("Form data before submission:", formData); 
         const res = await fetch('/api/jobstream',{
             method:"POST",
             credentials:"include",
             headers:{
-                "content-type":"Application/json"
+                "content-type":"application/json"
             },
             body:JSON.stringify(formData)
         })
+        if (!res.ok) {  
+            const errorJson = await res.json(); // Get the error message  
+            throw new Error(errorJson.error || "Failed to post the job.");  
+        }  
         console.log(formData);
         const json = await res.json();
-        setFormData(json)
+        console.log(json, "yash emp json");     
+        setFormData({  
+            id:'',
+            title: '',  
+            description: '',  
+            company: '',  
+            jobtype: "", // Reset to empty array  
+            location: '',  
+            salary: '',  
+            createdAt:new Date()
+          }); 
+        onJobCreated(json)
+        router.push(`/job/${json.job.id}`)
     }catch(e){
         console.error(e);
-        
-    }
-    
+        console.log("error 500");      
+    }  
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -52,14 +66,14 @@ export function Empjobpost({onJobCreated}) {
       [name]: value
     }));
   };
-
+ 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         <div className="bg-white rounded-lg shadow-lg p-6 md:p-8">
           
           
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit}   className="space-y-6">
             <div className="space-y-4">
               <div>
                 <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
@@ -123,8 +137,8 @@ export function Empjobpost({onJobCreated}) {
                     required
                   >
                     <option value="">Select Job Type</option>
-                    <option value="Full-time">Full-time</option>
-                    <option value="Part-time">Part-time</option>
+                    <option value="FullTime">Full-time</option>
+                    <option value="PartTime">Part-time</option>
                     <option value="Contract">Contract</option>
                     <option value="Freelance">Freelance</option>
                   </select>
@@ -162,27 +176,14 @@ export function Empjobpost({onJobCreated}) {
                   />
                 </div>
 
-                <div>
-                  <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
-                    <GraduationCap className="w-4 h-4" />
-                    Required Skills
-                  </label>
-                  <input
-                    type="text"
-                    name="skill"
-                    value={formData.skill}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="e.g. React, Node.js, TypeScript"
-                    required
-                  />
-                </div>
+                
               </div>
             </div>
 
             <div className="flex justify-end">
               <button
                 type="submit"
+               
                 className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
               >
                 Post Job

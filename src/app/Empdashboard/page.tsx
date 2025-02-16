@@ -87,7 +87,7 @@ export default function Empdashboard() {
                     </div>  
 
                     {/* Modal body */}  
-                    <div className="max-h-[calc(100vh-16rem)] overflow-y-auto px-6 py-4">  
+                    <div className="max-h-[calc(100vh-16rem)] overflow-y-auto px-6 py-4 ">  
                       <Empjobpost onJobCreated={handleJobCreated} />  
                     </div>  
                   </div>  

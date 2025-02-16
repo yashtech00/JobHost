@@ -15,9 +15,9 @@ export default function AuthPage() {
   const router = useRouter(); 
   console.log(session);   
 
-  // if (session.status === "authenticated") {  
-  //   router.push("/dashboard"); // Use router.push without return  
-  // }  
+  if (session.status === "authenticated") {  
+    router.push("/dashboard"); // Use router.push without return  
+  }  
 
   return <AuthScreen authtype={formType} />;  
 }

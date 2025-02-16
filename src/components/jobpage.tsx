@@ -13,6 +13,9 @@ export default function Jobs() {
       const res = await fetch("/api/jobstream", {
         method: "GET",
         credentials: "include",
+        headers:{
+            "content-type":"application"
+        }
       });
       const json = await res.json();
 

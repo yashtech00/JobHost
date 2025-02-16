@@ -30,7 +30,7 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
   const router = useRouter(); 
 
 
-  const signinWithProvider = async (provider: "github" | "credentials") => {
+  const signupWithProvider = async (provider: "github" | "credentials") => {
    
     try {
       if (provider === "credentials") {
@@ -73,13 +73,13 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
   const handleCredentials = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(""); // Clear previous errors
-    signinWithProvider("credentials");
+    signupWithProvider("credentials");
   };
 
   const handleGithub = (provider: "github") => {
     setError(""); // Clear previous errors
     setPending(true);
-    signinWithProvider(provider);
+    signupWithProvider(provider);
   };
 
   return (

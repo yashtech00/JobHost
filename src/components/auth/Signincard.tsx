@@ -17,7 +17,7 @@ import { SignInFlow } from "../../types/auth-types";
 import { signIn } from "next-auth/react";
 
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+
 
 interface SignupProp {
   setFormType: (state: SignInFlow) => void;

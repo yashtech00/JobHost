@@ -39,10 +39,10 @@ model Job {
   title       String
   description String
   company     String
-  jobtype     String
+  jobtype     Jobstype[]
   location    String
-  salary      Int
-  skill       String
+  salary      String
+ 
   createdAt   DateTime    @default(now())
   userId      String
   user        User        @relation(fields: [userId], references: [id])
@@ -92,6 +92,12 @@ enum Provider {
   Credentials
 }
 
+enum Jobstype{
+  FullTime
+  PartTime
+  Contract
+  Freelance
+}
 enum GenderType {
   Male
   Female
