@@ -6,7 +6,7 @@ import axios from "axios";
 import { JobCard } from "./jobcard";
 export default function Jobs() {
   const [search, setSearch] = useState("");
-  const [alljob, setAlljob] = useState([]);
+  const [alljob, setAlljob] = useState<Jobtypeprop[]>([]);
 
   async function refreshjobs() {
     try {
@@ -19,10 +19,10 @@ export default function Jobs() {
       });
       const json = await res.json();
 
-      console.log("API Response:", json); // Debugging log
+      console.log("API Response:", json.job); // Debugging log
 
-      if (Array.isArray(json)) {
-        setAlljob(json);
+      if (Array.isArray(json.job)) {
+        setAlljob(json.job);
       } else {
         setAlljob([]); // Ensure it's always an array
       }
@@ -36,22 +36,34 @@ export default function Jobs() {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col bg-gradient-to-br from-zinc-950 via-gray-900 to-zinc-950 text-white">
+    <div className="flex  flex-col ">
       <CardContent className="flex justify-center h-screen ">
         <div>
           <input placeholder="Search for a job" />
           <Button>Search</Button>
           <div className=" flex">
-            <div>filter card salary jobtype skill location</div>
-
+            <div>
+            <div> All Filter</div> 
+             <div>
+              <div>
+                <h3>Salary</h3>
+                <div>
+                  
+                </div>
+              </div>
+              </div>
+             <div>jobtype </div>
+             <div>location</div>
+             </div>
             <div>
               {Array.isArray(alljob) &&
                 alljob.map((job) => (
                   <div key={job.id || job.title}>
-                    <JobCard job={job} />
+                    <JobCard userjob={job} />
                   </div>
                 ))}
             </div>
+
           </div>
         </div>
       </CardContent>

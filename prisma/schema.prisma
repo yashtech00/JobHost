@@ -41,7 +41,7 @@ model Job {
   company     String
   jobtype     Jobstype[]
   location    String
-  salary      String
+  salary      Int
  
   createdAt   DateTime    @default(now())
   userId      String

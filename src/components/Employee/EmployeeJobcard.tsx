@@ -54,7 +54,7 @@ export function Empjobcard() {
                 <div key={empjob.id} className="w-full">
                   <Link
                     href={{
-                      pathname: `/job/${empjob.id}`,
+                      pathname: `/empjob/${empjob.id}`,
                       
                     }}
                   >
