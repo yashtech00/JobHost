@@ -22,9 +22,7 @@ export async function POST(req: NextRequest) {
     console.log(body, "yash body");
     console.log(session?.user.id);
     
-    const jobtypeArray = Array.isArray(body.jobtype)
-      ? body.jobtype
-      : [body.jobtype];
+    
       const salary = parseInt(body.salary, 10) || 0; // Default to 0 if parsing fails  
       const experience = parseInt(body.experience, 10) || 0; // Default to 0 if parsing fails  
       
@@ -35,7 +33,7 @@ export async function POST(req: NextRequest) {
           company: body.company || "",  
           salary: salary,  
           location: body.location || "",  
-          jobtype: jobtypeArray,  
+          jobtype: body.jobtype || "",  
           experience: experience,  
           userId: session?.user.id,  
         },  
