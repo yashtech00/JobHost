@@ -5,24 +5,24 @@ import { useRouter } from 'next/navigation';
 
 
 
-
 export function Empjobpost({onJobCreated}) {
   const [formData, setFormData] = useState<Jobtypeprop>({
-    id:'',
     title: '',
     description: '',
     company: '',
-    jobtype: "",
+    jobtype: '',
     location: '',
-    salary: '',
+    salary: 0,
+    experience:0,
     createdAt:new Date()
   });
-
-  const router = useRouter();
+  
+  
+ 
   
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
-
+   
     // TODO: Implement job posting logic
     try{
         console.log("Form data before submission:", formData); 
@@ -30,29 +30,29 @@ export function Empjobpost({onJobCreated}) {
             method:"POST",
             credentials:"include",
             headers:{
-                "content-type":"application/json"
+                'Content-Type': 'application/json'
             },
             body:JSON.stringify(formData)
-        })
+        });
         if (!res.ok) {  
             const errorJson = await res.json(); // Get the error message  
             throw new Error(errorJson.error || "Failed to post the job.");  
         }  
-        console.log(formData);
+
         const json = await res.json();
         console.log(json, "yash emp json");     
         setFormData({  
-            id:'',
             title: '',  
             description: '',  
             company: '',  
             jobtype: "", // Reset to empty array  
             location: '',  
-            salary: '',  
+            salary: 0, 
+            experience:0, 
             createdAt:new Date()
           }); 
         onJobCreated(json)
-        router.push(`/job/${json.job.id}`)
+      
     }catch(e){
         console.error(e);
         console.log("error 500");      
@@ -176,7 +176,21 @@ export function Empjobpost({onJobCreated}) {
                   />
                 </div>
 
-                
+                <div>
+                  <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
+                    <DollarSign className="w-4 h-4" />
+                    Experience
+                  </label>
+                  <input
+                    type="number"
+                    name="experience"
+                    value={formData.experience}
+                    onChange={handleChange}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="e.g. 1"
+                    required
+                  />
+                </div>
               </div>
             </div>
 

@@ -72,7 +72,10 @@ export function Empjobcard() {
                         </p>
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-4 pt-4 border-t border-emerald-100">
                           <div className="mb-2 sm:mb-0">
+                          <span className="font-bold">{empjob.experience}</span>
+                          <span className="mx-2">•</span>
                             <span className="font-bold">{empjob.salary}</span>
+                           
                             <span className="mx-2">•</span>
                             <span>
                               {Array.isArray(empjob.jobtype)

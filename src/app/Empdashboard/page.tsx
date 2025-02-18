@@ -26,14 +26,14 @@ export default function Empdashboard() {
   return (  
     <div>  
       <Appbar />  
-      <div className="flex justify-center">  
+      <div className="flex justify-center bg-emerald-50">  
         <div className="flex justify-between w-[80%] mt-14">  
           <div className="text-4xl font-semibold">Dashboard</div>  
           {/* Button to open modal */}  
           <button  
             onClick={openModal}  
-            className="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg   
-                   hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none  
+            className="px-6 py-3 bg-emerald-600 text-white font-medium rounded-lg   
+                   hover:bg-emerald-700 focus:ring-4 focus:ring-blue-300 focus:outline-none  
                    transform transition-all duration-200 hover:scale-105  
                    shadow-md hover:shadow-lg"  
             type="button"  
@@ -97,7 +97,7 @@ export default function Empdashboard() {
           )}  
         </div>  
       </div>  
-      <Empjobcard jobs={jobs} /> {/* Pass jobs to Empjobcard */}  
+      <Empjobcard /> {/* Pass jobs to Empjobcard */}  
     </div>  
   );  
 }

@@ -1,20 +1,14 @@
 import React from 'react';
 import { Pencil, Trash2 } from 'lucide-react';
-import { useParams } from 'next/navigation';
-import Appbar from './Appbar';
+import { redirect, useParams, useRouter } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 
-export interface JobTypeProp {
-  title: string;
-  description: string;
-  company: string;
-  location: string;
-  salary: string;
-  createdAt: Date;
-}
 
-export function FullJobCard({ job }: { job: JobTypeProp }) {
+
+export function FullJobCard({ job }: { job: Jobtypeprop }) {
     const params = useParams<{id:string}>()
         const jobId = params?.id;
+        const router = useRouter()
   const handleEdit = async() => {
     try{
         const res = await fetch(`/api/jobstream/${jobId}`,{
@@ -42,7 +36,7 @@ export function FullJobCard({ job }: { job: JobTypeProp }) {
             },
             body:JSON.stringify(job)
         })
-
+        router.push('/Empdashboard')
     }catch(e){
         console.error(e);
     }
@@ -103,6 +97,9 @@ export function FullJobCard({ job }: { job: JobTypeProp }) {
           </div>
           <div className="flex items-center px-3 py-1 bg-green-100 rounded-full">
             <span className="text-green-700 font-medium">{job.salary}</span>
+          </div>
+          <div className="flex items-center px-3 py-1 bg-green-100 rounded-full">
+            <span className="text-green-700 font-medium">{job.experience}</span>
           </div>
         </div>
 

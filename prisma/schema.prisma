@@ -22,18 +22,19 @@ model User {
   jobs        Job[]
   applicant   Applicant[]
   userprofile UserProfile[]
-  employee Employee[]
+  employee    Employee[]
 }
 
-model Employee{
-  id String @id @default(uuid())
-  name String
-  email String @unique
+model Employee {
+  id          String @id @default(uuid())
+  name        String
+  email       String @unique
   companyname String
   phonenumber String
-  userId String
-  user User @relation(fields: [userId],references: [id])
+  userId      String
+  user        User   @relation(fields: [userId], references: [id])
 }
+
 model Job {
   id          String      @id @default(uuid())
   title       String
@@ -42,11 +43,11 @@ model Job {
   jobtype     Jobstype[]
   location    String
   salary      Int
- 
+  experience  Int
   createdAt   DateTime    @default(now())
   userId      String
   user        User        @relation(fields: [userId], references: [id])
-  Applicant   Applicant[]
+  // Applicant   Applicant[]
 }
 
 model Applicant {
@@ -55,21 +56,21 @@ model Applicant {
   userId String
   jobId  String
   user   User   @relation(fields: [userId], references: [id])
-  job    Job    @relation(fields: [jobId], references: [id])
+  // job    Job    @relation(fields: [jobId], references: [id])
 }
 
 model UserProfile {
-  id               String     @id @default(uuid())
+  id String @id @default(uuid())
 
-  username         String     
-  email            String @unique
-  firstName        String
-  lastName         String
-  country          String
-  streetAddress    String
-  city             String
-  state            String
-  postalCode       String
+  username      String
+  email         String @unique
+  firstName     String
+  lastName      String
+  country       String
+  streetAddress String
+  city          String
+  state         String
+  postalCode    String
 
   workingYear      Int
   workingMonth     Int
@@ -83,8 +84,8 @@ model UserProfile {
   preferedLocation String
   skills           String
 
-  userId           String
-  user             User?      @relation(fields: [userId], references: [id])
+  userId String
+  user   User?  @relation(fields: [userId], references: [id])
 }
 
 enum Provider {
@@ -92,12 +93,13 @@ enum Provider {
   Credentials
 }
 
-enum Jobstype{
+enum Jobstype {
   FullTime
   PartTime
   Contract
   Freelance
 }
+
 enum GenderType {
   Male
   Female

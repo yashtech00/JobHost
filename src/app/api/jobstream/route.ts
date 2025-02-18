@@ -19,26 +19,33 @@ export async function POST(req: NextRequest) {
   }
   try {
     const body = await req.json();
-
+    console.log(body, "yash body");
+    console.log(session?.user.id);
+    
     const jobtypeArray = Array.isArray(body.jobtype)
       ? body.jobtype
       : [body.jobtype];
-    const job = await prisma.job.create({
-      data: {
-        title: body.title || "",
-        description: body.description || "",
-        company: body.company || "",
-        salary: body.salary || "",
-        location: body.location || "",
-        jobtype: jobtypeArray,
-        userId: session?.user.id,
-      },
-    });
-
+      const salary = parseInt(body.salary, 10) || 0; // Default to 0 if parsing fails  
+      const experience = parseInt(body.experience, 10) || 0; // Default to 0 if parsing fails  
+      
+      const response = await prisma.job.create({  
+        data: {  
+          title: body.title || "",  
+          description: body.description || "",  
+          company: body.company || "",  
+          salary: salary,  
+          location: body.location || "",  
+          jobtype: jobtypeArray,  
+          experience: experience,  
+          userId: session?.user.id,  
+        },  
+      });
+    console.log(response,"yash job");
+    
     return NextResponse.json(
       {
         message: "job posted Successfully",
-        job,
+        ...response,
       },
       {
         status: 200,

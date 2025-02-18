@@ -27,8 +27,8 @@ export function Stepper() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-emerald-50 py-2 ">
+      <div className="mx-auto max-w-5xl ">
         <div className="mb-8">
           <h1 className="text-center text-3xl font-bold text-gray-900">Create Your Account</h1>
           <p className="mt-2 text-center text-sm text-gray-600">
