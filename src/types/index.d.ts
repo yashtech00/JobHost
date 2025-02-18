@@ -1,4 +1,4 @@
-interface Jobtypeprop {
+interface Jobprop {
   title: string;
   description: string;
   company: string;
@@ -27,5 +27,5 @@ interface Jobtypeprop {
 
 interface JobTypeFilterProps {
   selectedJobTypes: JobTypeRange[]; // Change this to SalaryRange[]
-  setSelectedJobTypes: (salaries: JobTypeRange[]) => void; // Change to use SalaryRange[]
+  setSelectedJobTypes: (jobs: JobTypeRange[]) => void; // Change to use SalaryRange[]
 }

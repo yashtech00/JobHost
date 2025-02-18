@@ -1,31 +1,36 @@
-import { ChevronDown, ChevronUp, Clock, Briefcase, Search } from "lucide-react";
-import { useEffect, useState } from "react";
-import { JobCard } from "./jobcard";
+"use client"
+
+import type React from "react"
+
+import { ChevronDown, ChevronUp, Clock, Briefcase, Search } from "lucide-react"
+import { useEffect, useState } from "react"
+import { JobCard } from "./jobcard"
+
 
 
 export function Jobs() {
-  const [selectedSalaries, setSelectedSalaries] = useState<SalaryRange[]>([]);
-  const [selectedJobTypes, setSelectedJobTypes] = useState<JobTypeRange[]>([]);
-  const [isSalaryOpen, setIsSalaryOpen] = useState(false);
-  const [isJobTypeOpen, setIsJobTypeOpen] = useState(false);
-  const [experience, setExperience] = useState<number>(0);
-  const [search, setSearch] = useState("");
-  const [alljob, setAlljob] = useState<Jobtypeprop[]>([]);
-  const [filteredJobs, setFilteredJobs] = useState<Jobtypeprop[]>([]);
+  const [selectedSalaries, setSelectedSalaries] = useState<SalaryRange[]>([])
+  const [selectedJobTypes, setSelectedJobTypes] = useState<JobTypeRange[]>([])
+  const [isSalaryOpen, setIsSalaryOpen] = useState(false)
+  const [isJobTypeOpen, setIsJobTypeOpen] = useState(false)
+  const [experience, setExperience] = useState<number>(0)
+  const [search, setSearch] = useState("")
+  const [alljob, setAlljob] = useState<Jobprop[]>([])
+  const [filteredJobs, setFilteredJobs] = useState<Jobprop[]>([])
 
   const salaryRanges: SalaryRange[] = [
     { label: "0 - 3 Lakh", min: 0, max: 3 },
     { label: "3 - 6 Lakh", min: 3, max: 6 },
     { label: "6 - 10 Lakh", min: 6, max: 10 },
     { label: "10 - 15 Lakh", min: 10, max: 15 },
-  ];
+  ]
 
   const jobTypeRanges: JobTypeRange[] = [
-    { label: "Full-Time" },
-    { label: "Part-Time" },
+    {label:"FullTime" },
+    { label: "PartTime" },
     { label: "Contract" },
     { label: "Freelance" },
-  ];
+  ]
 
   async function refreshjobs() {
     try {
@@ -37,7 +42,8 @@ export function Jobs() {
         },
       });
       const json = await res.json();
-
+      console.log(json.job[0].jobtype);
+      
       if (Array.isArray(json.job)) {
         setAlljob(json.job);
         setFilteredJobs(json.job); // Set initial filtered jobs to all jobs
@@ -57,76 +63,67 @@ export function Jobs() {
   }, []);
 
   const handleExperienceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setExperience(Number(e.target.value));
-  };
+    setExperience(Number(e.target.value))
+  }
 
   const formatExperience = (value: number) => {
-    return value === 12 ? "12+" : value.toString();
-  };
+    return value === 12 ? "12+" : value.toString()
+  }
 
   const toggleJobType = (jobType: JobTypeRange) => {
+    console.log(jobType);
+    
     setSelectedJobTypes((prev) =>
-      prev.some(t => t.label === jobType.label)
-        ? prev.filter((t) => t.label !== jobType.label)
-        : [...prev, jobType]
-    );
-  };
+      prev.some((t) => t.label === jobType.label) ? prev.filter((t) => t.label !== jobType.label) : [...prev, jobType],
+    )
+  }
 
   const toggleSalary = (range: SalaryRange) => {
-    setSelectedSalaries((prev) =>
-      prev.includes(range) ? prev.filter((r) => r !== range) : [...prev, range]
-    );
-  };
+    setSelectedSalaries((prev) => (prev.includes(range) ? prev.filter((r) => r !== range) : [...prev, range]))
+  }
 
   useEffect(() => {
     // Only apply filters if any filter is active
-    const hasActiveFilters = 
-      search.trim() !== '' || 
-      selectedSalaries.length > 0 || 
-      selectedJobTypes.length > 0 || 
-      experience > 0;
+    const hasActiveFilters =
+      search.trim() !== "" || selectedSalaries.length > 0 || selectedJobTypes.length > 0 || experience > 0
 
     if (!hasActiveFilters) {
-      setFilteredJobs(alljob);
-      return;
+      setFilteredJobs(alljob)
+      return
     }
 
-    let filtered = [...alljob]; // Create a new array to avoid mutating the original
+    let filtered = [...alljob] // Create a new array to avoid mutating the original
 
     // Apply search filter
     if (search) {
-      const searchLower = search.toLowerCase();
+      const searchLower = search.toLowerCase()
       filtered = filtered.filter(
-        job =>
+        (job) =>
           job.title.toLowerCase().includes(searchLower) ||
           job.company.toLowerCase().includes(searchLower) ||
-          job.description.toLowerCase().includes(searchLower)
-      );
+          job.description.toLowerCase().includes(searchLower),
+      )
     }
 
     // Apply salary filter
     if (selectedSalaries.length > 0) {
       filtered = filtered.filter((job) =>
-        selectedSalaries.some(
-          (range) => job.salary >= range.min && job.salary <= range.max
-        )
-      );
+        selectedSalaries.some((range) => job.salary / 100000 >= range.min && job.salary / 100000 <= range.max),
+      )
     }
 
     // Apply job type filter
     if (selectedJobTypes.length > 0) {
-      filtered = filtered.filter((job) =>
-        selectedJobTypes.some((type) => job.jobtype === type.label)
-      );
+      filtered = filtered.filter((job) => selectedJobTypes.some((type) => job.jobtype === type.label))
     }
 
     // Apply experience filter
     if (experience > 0) {
-      filtered = filtered.filter((job) => job.experience <= experience);
+      filtered = filtered.filter((job) => job.experience <= experience)
     }
 
-    setFilteredJobs(filtered);
-  }, [selectedJobTypes, selectedSalaries, experience, search, alljob]); // Added alljob to dependencies
+    setFilteredJobs(filtered)
+  }, [selectedJobTypes, selectedSalaries, experience, search, alljob]) // Added alljob to dependencies
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4">
@@ -158,9 +155,7 @@ export function Jobs() {
                   <Briefcase className="w-5 h-5 text-emerald-600" />
                   <span>
                     {selectedSalaries.length
-                      ? `${selectedSalaries.length} Salary Range${
-                          selectedSalaries.length > 1 ? "s" : ""
-                        }`
+                      ? ` Salary Range${selectedSalaries.length > 1 ? "s" : ""}`
                       : "Salary Range"}
                   </span>
                 </div>
@@ -183,7 +178,7 @@ export function Jobs() {
                           type="checkbox"
                           checked={selectedSalaries.includes(range)}
                           onChange={() => toggleSalary(range)}
-                          className="w-4 h-4 border-2 border-emerald-300 rounded text-emerald-600 focus:ring-emerald-500"
+                          className="w-4 h-4 border-2 border-emerald-300 rounded text-emerald-600 focus:ring-emerald-500 checked:bg-emerald-600 checked:border-transparent"
                         />
                         <span className="text-sm text-gray-700">{range.label}</span>
                       </label>
@@ -204,9 +199,7 @@ export function Jobs() {
                   <Briefcase className="w-5 h-5 text-emerald-600" />
                   <span>
                     {selectedJobTypes.length
-                      ? `${selectedJobTypes.length} Job Type${
-                          selectedJobTypes.length > 1 ? "s" : ""
-                        }`
+                      ? `${selectedJobTypes.length} Job Type${selectedJobTypes.length > 1 ? "s" : ""}`
                       : "Job Type"}
                   </span>
                 </div>
@@ -220,18 +213,18 @@ export function Jobs() {
               {isJobTypeOpen && (
                 <div className="absolute top-full left-0 w-full mt-2 bg-white border border-emerald-100 rounded-lg shadow-lg z-10">
                   <div className="p-2">
-                    {jobTypeRanges.map((jobType) => (
+                    {jobTypeRanges.map((jobtype) => (
                       <label
-                        key={jobType.label}
+                        key={jobtype.label}
                         className="flex items-center gap-3 px-3 py-2 hover:bg-emerald-50 rounded-md cursor-pointer"
                       >
                         <input
                           type="checkbox"
-                          checked={selectedJobTypes.some(t => t.label === jobType.label)}
-                          onChange={() => toggleJobType(jobType)}
-                          className="w-4 h-4 border-2 border-emerald-300 rounded text-emerald-600 focus:ring-emerald-500"
+                          checked={selectedJobTypes.some((t) => t.label === jobtype.label)}
+                          onChange={() => toggleJobType(jobtype)}
+                          className="w-4 h-4 border-2 border-emerald-300 rounded text-emerald-600 focus:ring-emerald-500 checked:bg-emerald-600 checked:border-transparent"
                         />
-                        <span className="text-sm text-gray-700">{jobType.label}</span>
+                        <span className="text-sm text-gray-700">{jobtype.label}</span>
                       </label>
                     ))}
                   </div>
@@ -275,8 +268,7 @@ export function Jobs() {
                 <div className="flex items-center justify-center">
                   <div className="bg-emerald-50 px-4 py-2 rounded-full">
                     <span className="text-sm text-emerald-700 font-medium">
-                      {formatExperience(experience)}{" "}
-                      {experience === 1 ? "Year" : "Years"}
+                      {formatExperience(experience)} {experience === 1 ? "Year" : "Years"}
                     </span>
                   </div>
                 </div>
@@ -288,9 +280,7 @@ export function Jobs() {
           <div className="flex-1">
             <div className="space-y-4">
               {filteredJobs.length > 0 ? (
-                filteredJobs.map((job) => (
-                  <JobCard key={job.id} userjob={job} />
-                ))
+                filteredJobs.map((job) => <JobCard key={job.id} userjob={job} />)
               ) : (
                 <div className="bg-white rounded-lg p-8 text-center">
                   <p className="text-gray-500 text-lg">No jobs found matching your criteria.</p>
@@ -302,5 +292,6 @@ export function Jobs() {
         </div>
       </div>
     </div>
-  );
+  )
 }
+

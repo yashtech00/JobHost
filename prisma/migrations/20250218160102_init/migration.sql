@@ -2,9 +2,6 @@
 CREATE TYPE "Provider" AS ENUM ('Github', 'Credentials');
 
 -- CreateEnum
-CREATE TYPE "Jobstype" AS ENUM ('FullTime', 'PartTime', 'Contract', 'Freelance');
-
--- CreateEnum
 CREATE TYPE "GenderType" AS ENUM ('Male', 'Female', 'Other');
 
 -- CreateTable
@@ -36,7 +33,7 @@ CREATE TABLE "Job" (
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "company" TEXT NOT NULL,
-    "jobtype" "Jobstype"[],
+    "jobtype" TEXT NOT NULL,
     "location" TEXT NOT NULL,
     "salary" INTEGER NOT NULL,
     "experience" INTEGER NOT NULL,
@@ -101,9 +98,6 @@ ALTER TABLE "Job" ADD CONSTRAINT "Job_userId_fkey" FOREIGN KEY ("userId") REFERE
 
 -- AddForeignKey
 ALTER TABLE "Applicant" ADD CONSTRAINT "Applicant_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Applicant" ADD CONSTRAINT "Applicant_jobId_fkey" FOREIGN KEY ("jobId") REFERENCES "Job"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "UserProfile" ADD CONSTRAINT "UserProfile_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

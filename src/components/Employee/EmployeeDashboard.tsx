@@ -6,11 +6,11 @@ import { useRouter } from 'next/navigation';
 
 
 export function Empjobpost({onJobCreated}) {
-  const [formData, setFormData] = useState<Jobtypeprop>({
+  const [formData, setFormData] = useState<Jobprop>({
     title: '',
     description: '',
     company: '',
-    jobtype: '',
+    jobtype: "",
     location: '',
     salary: 0,
     experience:0,
@@ -45,7 +45,7 @@ export function Empjobpost({onJobCreated}) {
             title: '',  
             description: '',  
             company: '',  
-            jobtype: "", // Reset to empty array  
+            jobtype: '', // Reset to empty array  
             location: '',  
             salary: 0, 
             experience:0, 

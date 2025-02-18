@@ -4,7 +4,7 @@ import Link from "next/link";
 import { CalendarDays, Building2, MapPin, Briefcase, DollarSign } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 
-export function JobCard({ userjob }) {
+export function JobCard({ userjob } : {userjob:Jobprop}) {
   const formatTimeAgo = (date) => {
     try {
       return formatDistanceToNow(new Date(date), { addSuffix: true })
@@ -52,7 +52,7 @@ export function JobCard({ userjob }) {
               </div>
               <div className="flex items-center gap-2">
                 <DollarSign className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                <span>{userjob.salary}</span>
+                <span>{userjob.salary/100000}</span>
               </div>
             </div>
 

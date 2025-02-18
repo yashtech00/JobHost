@@ -1,11 +1,11 @@
 import React from 'react';
 import { Pencil, Trash2 } from 'lucide-react';
-import { redirect, useParams, useRouter } from 'next/navigation';
-import { revalidatePath } from 'next/cache';
+import {  useParams, useRouter } from 'next/navigation';
 
 
 
-export function FullJobCard({ job }: { job: Jobtypeprop }) {
+
+export function FullJobCard({ job }: { job: Jobprop }) {
     const params = useParams<{id:string}>()
         const jobId = params?.id;
         const router = useRouter()
