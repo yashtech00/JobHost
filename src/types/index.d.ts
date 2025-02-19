@@ -40,3 +40,8 @@ interface JobTypeFilterProps {
   selectedJobTypes: JobTypeRange[]; // Change this to SalaryRange[]
   setSelectedJobTypes: (jobs: JobTypeRange[]) => void; // Change to use SalaryRange[]
 }
+
+
+interface ApplicantProp {
+  resume:string
+}

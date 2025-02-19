@@ -5,6 +5,8 @@ import { CalendarDays, Building2, MapPin, Briefcase, DollarSign, IndianRupee } f
 import { formatDistanceToNow } from "date-fns";
 
 export function JobCard({ userjob } : {userjob:Jobprop}) {
+  console.log(userjob.id);
+  
   const formatTimeAgo = (date) => {
     try {
       return formatDistanceToNow(new Date(date), { addSuffix: true })
@@ -17,7 +19,7 @@ export function JobCard({ userjob } : {userjob:Jobprop}) {
 
   return (
     <div className="w-full max-w-2xl mx-auto">
-      <Link href={`/job/${userjob.id}`}>
+      <Link href={`/userjob/${userjob.id}`}>
         <div 
           key={userjob.id}
           className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-emerald-100 overflow-hidden"

@@ -47,7 +47,7 @@ model Job {
   createdAt   DateTime    @default(now())
   userId      String
   user        User        @relation(fields: [userId], references: [id])
-  // Applicant   Applicant[]
+  Applicant   Applicant[]
 }
 
 model Applicant {
@@ -56,7 +56,7 @@ model Applicant {
   userId String
   jobId  String
   user   User   @relation(fields: [userId], references: [id])
-  // job    Job    @relation(fields: [jobId], references: [id])
+  job    Job    @relation(fields: [jobId], references: [id])
 }
 
 model UserProfile {
