@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 import prisma from "../../../../lib/db";
 
 export async function POST(req: NextRequest) {
-  console.log("POST request received at /api/jobstream");
+ 
   const session = await getServerSession(authoptions);
 
   if (!session?.user.id) {
@@ -19,13 +19,12 @@ export async function POST(req: NextRequest) {
   }
   try {
     const body = await req.json();
-    console.log(body, "yash body");
-    console.log(session?.user.id);
+   
     
     
       const salary = parseInt(body.salary, 10) || 0; // Default to 0 if parsing fails  
       const experience = parseInt(body.experience, 10) || 0; // Default to 0 if parsing fails  
-      console.log(body.id,"yash id");
+     
       
       
       const response = await prisma.job.create({  

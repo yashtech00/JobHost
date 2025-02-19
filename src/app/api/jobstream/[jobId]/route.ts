@@ -6,7 +6,7 @@ import { authoptions } from "../../../../../lib/auth-options";
 export async function GET(req: NextRequest, { params }: { params: { jobId: string } }) {
   const { jobId } = params;
   const session = await getServerSession(authoptions);
-  console.log( "yash");
+
 
   if (!session?.user.id) {
     return NextResponse.json(
@@ -25,7 +25,7 @@ export async function GET(req: NextRequest, { params }: { params: { jobId: strin
         id: jobId, // Find the job by ID
       },
     });
-    console.log(job, "[yash]");
+   
     
     if (!job) {
       return NextResponse.json(

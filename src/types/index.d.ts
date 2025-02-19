@@ -44,4 +44,5 @@ interface JobTypeFilterProps {
 
 interface ApplicantProp {
   resume:string
+  jobId: string
 }
