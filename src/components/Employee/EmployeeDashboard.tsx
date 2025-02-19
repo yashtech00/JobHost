@@ -6,7 +6,8 @@ import { useRouter } from 'next/navigation';
 
 
 export function Empjobpost({onJobCreated}) {
-  const [formData, setFormData] = useState<Jobprop>({
+  const router = useRouter();
+  const [formData, setFormData] = useState<PostJobprop>({
     title: '',
     description: '',
     company: '',
@@ -16,9 +17,6 @@ export function Empjobpost({onJobCreated}) {
     experience:0,
     createdAt:new Date()
   });
-  
-  
- 
   
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
@@ -40,8 +38,10 @@ export function Empjobpost({onJobCreated}) {
         }  
 
         const json = await res.json();
+        
         console.log(json, "yash emp json");     
-        setFormData({  
+        setFormData({ 
+            
             title: '',  
             description: '',  
             company: '',  
@@ -52,7 +52,7 @@ export function Empjobpost({onJobCreated}) {
             createdAt:new Date()
           }); 
         onJobCreated(json)
-      
+          router.push(`/empjob/${json.id}`);
     }catch(e){
         console.error(e);
         console.log("error 500");      

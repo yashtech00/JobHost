@@ -25,9 +25,12 @@ export async function POST(req: NextRequest) {
     
       const salary = parseInt(body.salary, 10) || 0; // Default to 0 if parsing fails  
       const experience = parseInt(body.experience, 10) || 0; // Default to 0 if parsing fails  
+      console.log(body.id,"yash id");
+      
       
       const response = await prisma.job.create({  
         data: {  
+
           title: body.title || "",  
           description: body.description || "",  
           company: body.company || "",  

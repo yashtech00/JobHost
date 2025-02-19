@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export default function Empdashboard() {  
   const [isModalOpen, setIsModalOpen] = useState(false);  
-  const [jobs, setJobs] = useState([]); // State to hold job posts  
+  const [jobs, setJobs] = useState<Jobprop[]>([]); // State to hold job posts  
 
   const openModal = () => {  
     setIsModalOpen(true);  

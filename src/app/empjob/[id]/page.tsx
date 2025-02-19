@@ -10,7 +10,7 @@ export default function Job() {
 
     const params = useParams<{id:string}>()
     const jobId = params?.id;
-  const [job, setJob] = useState<Jobtypeprop | null>(null);
+  const [job, setJob] = useState<PostJobprop | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -18,8 +18,6 @@ export default function Job() {
   console.log("Job ID from URL:", jobId); // Checking if ID is received
 
   useEffect(() => {
-    
-
     const fetchJobById = async () => {
       try {
         console.log(`Fetching job from: /api/jobstream/${jobId}`);
@@ -29,7 +27,8 @@ export default function Job() {
           credentials: "include",
           headers: { "content-type": "application/json" },
         });
-
+          console.log(res, "yash res");
+          
         if (!res.ok) {
           throw new Error(`Error fetching job: ${res.statusText}`);
         }

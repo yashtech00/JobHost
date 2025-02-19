@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export function Empjobcard() {
-  const [jobs, setJobs] = useState<Jobtypeprop[]>([]);
+  const [jobs, setJobs] = useState<Jobprop[]>([]);
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState<string | null>(null);
 

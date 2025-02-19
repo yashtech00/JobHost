@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { CalendarDays, Building2, MapPin, Briefcase, DollarSign } from "lucide-react";
+import { CalendarDays, Building2, MapPin, Briefcase, DollarSign, IndianRupee } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 
 export function JobCard({ userjob } : {userjob:Jobprop}) {
@@ -44,15 +44,15 @@ export function JobCard({ userjob } : {userjob:Jobprop}) {
             <div className="flex flex-wrap gap-3 sm:gap-4 mb-4 text-gray-600 text-sm sm:text-base">
             <div className="flex items-center gap-2">
                 <Briefcase className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                <span>Exp</span>
+                <span>{userjob.experience}+ Exp</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-emerald-600 flex-shrink-0" />
                 <span>{userjob.location}</span>
               </div>
               <div className="flex items-center gap-2">
-                <DollarSign className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                <span>{userjob.salary/100000}</span>
+                <IndianRupee  className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                <span>{userjob.salary/100000} Lacs</span>
               </div>
             </div>
 
@@ -67,10 +67,12 @@ export function JobCard({ userjob } : {userjob:Jobprop}) {
                 <CalendarDays className="w-4 h-4 mr-2 text-emerald-600" />
                 Posted {formatTimeAgo(userjob.createdAt)}
               </div>
+              
               <button className="w-full sm:w-auto px-4 sm:px-6 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 transition-colors duration-200 flex items-center justify-center gap-2">
                 <Briefcase className="w-4 h-4" />
                 <span>Apply Now</span>
               </button>
+              
             </div>
           </div>
         </div>

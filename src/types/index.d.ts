@@ -1,4 +1,5 @@
 interface Jobprop {
+  id:string;
   title: string;
   description: string;
   company: string;
@@ -9,6 +10,16 @@ interface Jobprop {
   experience: number;
 }
 
+interface PostJobprop {
+  title: string;
+  description: string;
+  company: string;
+  jobtype: string;
+  location: string;
+  salary: number;
+  createdAt: Date;
+  experience: number;
+}
  interface SalaryRange {
   label: string;
   min: number;
