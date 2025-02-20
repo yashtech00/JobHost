@@ -1,6 +1,7 @@
 "use client";
 
 import { UserFullJobCard } from "@/components/UserFullJobCard";
+import { Jobprop } from "@/types";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
