@@ -5,6 +5,7 @@ import type React from "react"
 import { ChevronDown, ChevronUp, Clock, Briefcase, Search } from "lucide-react"
 import { useEffect, useState } from "react"
 import { JobCard } from "./jobcard"
+import { Jobprop, JobTypeRange, SalaryRange } from "@/types"
 
 
 

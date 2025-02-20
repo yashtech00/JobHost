@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { CalendarDays, Building2, MapPin, Briefcase, DollarSign, IndianRupee } from "lucide-react";
+import { CalendarDays, Building2, MapPin, Briefcase, IndianRupee } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
+import { Jobprop } from "@/types";
 
 export function JobCard({ userjob } : {userjob:Jobprop}) {
   console.log(userjob.id);

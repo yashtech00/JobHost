@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { IndianRupee, MapPin, Pencil, Trash2 } from 'lucide-react';
 import {  useParams, useRouter } from 'next/navigation';
-import { ApplicantGetProp } from '@/types';
+import { ApplicantGetProp, Jobprop } from '@/types';
 
 export function FullJobCard({ job }: { job: Jobprop }) {
     const params = useParams<{id:string}>()

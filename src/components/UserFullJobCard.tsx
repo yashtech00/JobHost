@@ -10,6 +10,7 @@ import {
 
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
+import { ApplicantProp, Jobprop } from "@/types";
 
 export  function UserFullJobCard({ job }: { job: Jobprop }) {
   const [applyjob, setApplyjob] = useState<ApplicantProp[]>([]);
@@ -102,7 +103,7 @@ export  function UserFullJobCard({ job }: { job: Jobprop }) {
               name="file-upload"
               type="file"
               accept=".pdf, .doc, .docx, .txt" // Accept file types
-              onChange={(e) => {
+              onChange={() => {
                 // Set a dummy value when user selects a file
                 setResume("Dummy Resume Data (simulated upload)"); // Simulate a file upload
               }}

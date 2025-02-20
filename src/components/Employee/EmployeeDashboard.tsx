@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Building2, MapPin, Briefcase, DollarSign, Clock, FileText } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { PostJobprop } from '@/types';
 
 
 
