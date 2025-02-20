@@ -1,4 +1,4 @@
-import Appbar from "@/components/Appbar";
+import Appbar from "@/components/Appbar/Appbar";
 import { Review } from "@/components/Landingpage/Review";
 
 

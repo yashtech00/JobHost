@@ -1,6 +1,6 @@
 "use client";
 
-import Appbar from "@/components/Appbar";
+import Appbar from "@/components/Appbar/Appbar";
 import { Empjobpost } from "@/components/Employee/EmployeeDashboard";
 import { Empjobcard } from "@/components/Employee/EmployeeJobcard";
 import { useState } from "react";

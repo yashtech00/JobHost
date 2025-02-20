@@ -1,4 +1,4 @@
-import Appbar from "@/components/Appbar";
+import Appbar from "@/components/Appbar/Appbar";
 import { FormProvider } from "@/components/boardingAll/FormContext";
 import { Stepper } from "@/components/boardingAll/stepper";
 

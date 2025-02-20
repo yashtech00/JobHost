@@ -1,6 +1,6 @@
 "use client";
 
-import Appbar from "@/components/Appbar";
+import Appbar from "@/components/Appbar/Appbar";
 import { Footer } from "@/components/Landingpage/Footer";
 import { HeroSection } from "@/components/Landingpage/HeroSection";
 

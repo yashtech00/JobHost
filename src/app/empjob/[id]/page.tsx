@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { FullJobCard } from "@/components/FullJobCard";
 import { useParams } from "next/navigation";
-import Appbar from "@/components/Appbar";
+import Appbar from "@/components/Appbar/Appbar";
 
 export default function Job() {
 
