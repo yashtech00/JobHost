@@ -56,3 +56,27 @@ export interface ApplicantGetProp {
   };
   jobId: string;
 }
+
+interface UserProp {
+  id: string;
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  country: string;
+  streetAddress: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  workingYear: number;
+  workingMonth: number;
+  currentLocations: string;
+  links: string;
+  resume: string;
+  education: string;
+  gender: string;
+  profilePic: string;
+  preferedJobTitle: string;
+  preferedLocation: string;
+  skills: string;
+}

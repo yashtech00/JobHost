@@ -1,5 +1,6 @@
 "use client";
 import React, { createContext, useContext, useState } from "react";
+import { PersonalInfo } from "./PersonalInfo";
 
 interface PersonalInfo {
   firstName: string;
@@ -16,12 +17,12 @@ interface PersonalInfo {
 interface AccountInfo {
   username: string;
   education: string;
-  preferedJobTitle: string;
-  preferedLocation: string;
-  skills: string;
-  workingYear: number;
-  workingMonth: number;
-  links: string;
+  preferedJobTitle?: string;
+  preferedLocation?: string;
+  skills?: string;
+  workingYear?: number;
+  workingMonth?: number;
+  links?: string;
   photoUrl?: string;
   resumeFile?: File;
 }
@@ -68,6 +69,7 @@ export const FormProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [formData, setFormData] = useState<FormData>(defaultFormData);
 
+  
   const updatePersonalInfo = (data: PersonalInfo) => {
     setFormData((prev) => ({
       ...prev,

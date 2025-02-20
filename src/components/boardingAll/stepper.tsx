@@ -22,7 +22,7 @@ export function Stepper() {
 
   const steps = [
     { label: 'Personal Info', component: <PersonalInfo onNext={handleNext} /> },
-    { label: 'Account Info', component: <AccountInfo onNext={handleNext} /> },
+    { label: 'Account Info', component: <AccountInfo onNext={handleNext} onBack={handleBack} /> },
     { label: 'Confirmation', component: <Confirmation onBack={handleBack} /> },
   ];
 

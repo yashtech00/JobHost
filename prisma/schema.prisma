@@ -72,17 +72,16 @@ model UserProfile {
   state         String
   postalCode    String
 
-  workingYear      Int
-  workingMonth     Int
-  currentLocations String
+  workingYear      Int?
+  workingMonth     Int?
   links            String?
-  resume           String
+  resume           String?
   education        String
-  gender           GenderType
+  gender           String
   profilePic       String?
-  preferedJobTitle String
-  preferedLocation String
-  skills           String
+  preferedJobTitle String?
+  preferedLocation String?
+  skills           String?
 
   userId String
   user   User?  @relation(fields: [userId], references: [id])
@@ -91,12 +90,4 @@ model UserProfile {
 enum Provider {
   Github
   Credentials
-}
-
-
-
-enum GenderType {
-  Male
-  Female
-  Other
 }

@@ -71,7 +71,7 @@ export function DropDown() {
               className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md overflow-hidden z-50"
             >
               <li>
-                <Link href="/profile" className="flex items-center px-4 py-2 hover:bg-accent text-sm">
+                <Link href="/appbar/profile" className="flex items-center px-4 py-2 hover:bg-accent text-sm">
                   <User className="w-4 h-4 mr-3" />
                   View profile
                 </Link>

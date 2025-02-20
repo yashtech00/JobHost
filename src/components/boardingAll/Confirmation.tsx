@@ -25,13 +25,14 @@ export const Confirmation: React.FC<ConfirmationProps> = ({ onBack }) => {
         },
         body: JSON.stringify(formData),
       });
-        router.push('/dashboard')
+       
       if (!response.ok) {
         throw new Error('Submission failed');
       }
 
       // Handle successful submission
-      console.log('Form submitted successfully');
+      console.log('Form submitted successfully',response);
+      router.push('/dashboard')
     } catch (error) {
       console.error('Error submitting form:', error);
     }

@@ -15,47 +15,61 @@ export async function POST(req: NextRequest) {
       }
     );
   }
-  try {
-    const body = await req.json();
-
-    const response = await prisma.userProfile.create({
-      data: {
-        username: body.username || "",
-        firstName: body.firstName || "",
-        lastName: body.lastName || "",
-        email: body.email || "",
-        country: body.country || "",
-        streetAddress: body.streetAddress || "",
-        city: body.city || "",
-        state: body.state || "",
-        postalCode: body.postalCode || "",
-        workingYear: body.workingYear || 0,
-        workingMonth: body.workingMonth || 0,
-        currentLocations: body.currentLocations || "",
-        links: body.links || "",
-        resume: body.resume || "",
-        education: body.education || "",
-        gender: body.gender || "OTHER", // Default to "OTHER" if not provided
-        profilePic: body.profilePic || "",
-        preferedJobTitle: body.preferedJobTitle || "",
-        preferedLocation: body.preferedLocation || "",
-        skills: body.skills || "",
-      },
-    });
-
-    return NextResponse.json({
-        ...response
-    })
-  } catch (error) {
-    console.error("Error creating user profile:", error);
-    return NextResponse.json(
-      {
-        message: "Error while creating User Profile",
-      },
-      {
-        status: 500,
-      }
-    );
+  try {  
+    const body = await req.json();  
+    console.log(body, "yash body stepper");  
+    
+    const {  
+      personalInfo,  
+      accountInfo  
+    } = body;  
+  
+    const response = await prisma.userProfile.create({  
+      data: {  
+        username: accountInfo.username || "",  
+        firstName: personalInfo.firstName || "",  
+        lastName: personalInfo.lastName || "",  
+        email: personalInfo.email || "",  
+        country: personalInfo.country || "",  
+        streetAddress: personalInfo.streetAddress || "",  
+        city: personalInfo.city || "",  
+        state: personalInfo.state || "",  
+        postalCode: personalInfo.postalCode || "",  
+        workingYear: accountInfo.workingYear || 0,  
+        workingMonth: accountInfo.workingMonth || 0,  
+        links: accountInfo.links || null,  
+        resume: accountInfo.resume || "", // Ensure you handle this case  
+        education: accountInfo.education || "",  
+        gender: personalInfo.gender || "OTHER", // Default to "OTHER"  
+        profilePic: body.profilePic || null,  
+        preferedJobTitle: accountInfo.preferedJobTitle || "",  
+        preferedLocation: accountInfo.preferedLocation || "",  
+        skills: accountInfo.skills || "",  
+        userId: session?.user.id || ""  
+      },  
+    });  
+    console.log(response);
+       // Ensure 'response' is an object before spreading it  
+       if (response && typeof response === 'object') {  
+        return NextResponse.json({ ...response });  
+      } else {  
+        // Catch any unexpected non-object response  
+        throw new Error("Received an unexpected response format from Prisma");  
+      }    
+    
+  } catch (error) {  
+    console.error("Error creating user profile:", error);  
+  
+    // Better error handling  
+    return NextResponse.json(  
+      {  
+        message: "Error while creating User Profile",  
+        error: error instanceof Error ? error.message : "Unknown error occurred"  
+      },  
+      {  
+        status: 500,  
+      }  
+    );  
   }
 }
 
@@ -72,14 +86,15 @@ export async function GET() {
     );
   }
   try{
-    const user = await prisma.user.findUnique({
+    console.log("hello before ");
+    
+    const getprofile = await prisma.userProfile.findUnique({
         where:{
             email:session.user.email || ""
         }
     })
     return NextResponse.json({
-        message:"user detail fetch successfully",
-        user
+        getprofile
     })
 
   }catch(e){

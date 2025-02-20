@@ -12,7 +12,8 @@ export const PersonalInfo: React.FC<PersonalInfoProps> = ({ onNext }) => {
     event.preventDefault();
     const formElement = event.currentTarget;
     const formData = new FormData(formElement);
-    
+      
+      
     updatePersonalInfo({
       firstName: formData.get('first-name') as string,
       lastName: formData.get('last-name') as string,
@@ -26,6 +27,7 @@ export const PersonalInfo: React.FC<PersonalInfoProps> = ({ onNext }) => {
     });
     
     onNext();
+    console.log(formData.get('gender'),"ll");
   };
 
   return (
@@ -93,16 +95,15 @@ export const PersonalInfo: React.FC<PersonalInfoProps> = ({ onNext }) => {
                     </label>
                     <div className="mt-2">
                       <select
-                        id="countries"
+                        id="gender"
+                        name="gender"
                         defaultValue={formData.personalInfo.gender}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                       >
-                        <option value="Choose a country">
-                          Choose a Gender
-                        </option>
-                        <option value="US">Male</option>
-                        <option value="CA">Female</option>
-                        <option value="FR">Other</option>
+                        
+                        <option >Male</option>
+                        <option >Female</option>
+                        <option >Other</option>
                       </select>
                     </div>
                   </div>

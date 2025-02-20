@@ -3,9 +3,10 @@ import { useFormContext } from "./FormContext";
 
 interface AccountInfoProps {
   onNext: () => void;
+  onBack: () => void;
 }
 
-export const AccountInfo: React.FC<AccountInfoProps> = ({ onNext }) => {
+export const AccountInfo: React.FC<AccountInfoProps> = ({ onNext,onBack }) => {
   const { formData, updateAccountInfo } = useFormContext();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -87,9 +88,7 @@ export const AccountInfo: React.FC<AccountInfoProps> = ({ onNext }) => {
                     </label>
                     <div className="mt-2">
                       <div className="flex items-center rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
-                        <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">
-                          @
-                        </span>
+                        
                         <input
                           type="text"
                           name="username"
@@ -307,9 +306,10 @@ export const AccountInfo: React.FC<AccountInfoProps> = ({ onNext }) => {
           <div className="flex items-center justify-end gap-x-6">
             <button
               type="button"
+              onClick={onBack}
               className="text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700 transition-colors duration-200"
             >
-              Cancel
+              Back
             </button>
             <button
               type="submit"
