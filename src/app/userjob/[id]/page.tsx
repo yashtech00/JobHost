@@ -1,5 +1,6 @@
 "use client";
 
+import Appbar from "@/components/Appbar/Appbar";
 import { UserFullJobCard } from "@/components/UserFullJobCard";
 import { Jobprop } from "@/types";
 import { useParams } from "next/navigation";
@@ -41,6 +42,7 @@ export default function Userjob() {
   }, []);
   return (
     <div>
+      <Appbar/>
       <UserFullJobCard job={userjob} />
     </div>
   );

@@ -14,3 +14,10 @@ export const passwordSchema = z
 export const nameSchema = z
     .string({message:"Invaild name"})
     
+
+export const empjobSchema = z.object({
+    title:z.string({message:"Invaild name"}),
+    description:z.string({message:"Invaild name"}),
+    
+
+})

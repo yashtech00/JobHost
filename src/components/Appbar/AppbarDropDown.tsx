@@ -42,7 +42,7 @@ export function DropDown() {
             type="button"
             id="dropdownToggle"
             onClick={handleToggle}
-            className="px-4 py-2 flex items-center rounded-full text-primary text-sm border border-input hover:bg-accent hover:text-accent-foreground"
+            className="px-4 py-2 flex items-center rounded-full text-primary text-sm border-2 border-emerald-300  hover:bg-accent hover:text-accent-foreground"
             aria-expanded={isOpen}
           >
             <img
@@ -71,13 +71,13 @@ export function DropDown() {
               className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md overflow-hidden z-50"
             >
               <li>
-                <Link href="/appbar/profile" className="flex items-center px-4 py-2 hover:bg-accent text-sm">
+                <Link href="/appbar/profile" className="flex items-center px-4 py-2 hover:bg-accent text-sm hover:bg-emerald-500 hover:text-white">
                   <User className="w-4 h-4 mr-3" />
                   View profile
                 </Link>
               </li>
               <li>
-                <Link href="/dashboard" className="flex items-center px-4 py-2 hover:bg-accent text-sm">
+                <Link href="/dashboard" className="flex items-center px-4 py-2 hover:bg-accent text-sm hover:bg-emerald-500 hover:text-white" >
                   <LayoutDashboard className="w-4 h-4 mr-3" />
                   Dashboard
                 </Link>
@@ -85,7 +85,7 @@ export function DropDown() {
               <li>
                 <button
                   onClick={() => signOut({ callbackUrl: "/" })}
-                  className="flex items-center w-full px-4 py-2 hover:bg-accent text-sm"
+                  className="flex items-center w-full px-4 py-2 hover:bg-accent text-sm hover:bg-emerald-500 hover:text-white"
                 >
                   <LogOut className="w-4 h-4 mr-3" />
                   Logout

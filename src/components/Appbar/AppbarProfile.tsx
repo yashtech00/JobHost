@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Usercard } from "./usercard";
+
 import { UserProp } from "@/types";
+import { UserCard } from "./usercard";
 
 
 
@@ -41,10 +42,9 @@ export function AppbarProfile() {
 
   return (
     <div className="bg-gray-50">
-      <h2>Profile</h2>
       <div>
         {appuser.map((userdetails) => (
-          <Usercard userdetail={userdetails} key={userdetails.id} />
+          <UserCard userdetail={userdetails} key={userdetails.id} />
         ))}
       </div>
     </div>
