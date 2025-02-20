@@ -9,12 +9,15 @@ import {
 } from "./ui/card";
 
 import { Button } from "./ui/button";
+import { useRouter } from "next/navigation";
 
 export  function UserFullJobCard({ job }: { job: Jobprop }) {
   const [applyjob, setApplyjob] = useState<ApplicantProp[]>([]);
   const [resume, setResume] = useState("Dummy Resume Data"); // Set a dummy value by default
   const params = useParams<{ id: string }>();
   const id = params?.id;
+
+  const router = useRouter();
 
   async function applyfunction(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -44,6 +47,7 @@ export  function UserFullJobCard({ job }: { job: Jobprop }) {
       const json = await res.json();
       console.log(json);
       setApplyjob([...applyjob, json.response]);
+      router.push('/dashboard');
     } catch (e) {
       console.error(e);
     }

@@ -56,7 +56,8 @@ export default function Job() {
       ) : error ? (
         <div className="text-red-500">{error}</div>
       ) : job ? (
-        <FullJobCard job={job} />
+        <div className="bg-emerald-50">
+        <FullJobCard job={job} /></div>
       ) : (
         <div>Job not found.</div>
       )}

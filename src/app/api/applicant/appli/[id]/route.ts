@@ -42,7 +42,7 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
   const session = await getServerSession(authoptions);
   const { id } = await params;
-  console.log("Received jobId:", id);
+  console.log("Received jobId: yash : ", id);
 
   if (!session?.user.id) {
     return NextResponse.json({
@@ -53,26 +53,18 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
   }
 
   try {
-    let applicants;
-    if (id) {
-      applicants = await prisma.applicant.findMany({
+   
+      const applicants = await prisma.applicant.findMany({
         where: {
-          id,
+          jobId: id,
         },
         include: {
           user: true,
           job: true,
         },
       });
-    } else {
-      applicants = await prisma.applicant.findMany({
-        include: {
-          user: true,
-          job: true,
-        },
-      });
-    }
-
+      console.log(applicants,"yash applicants");
+      
     return NextResponse.json(applicants, {
       status: 200
     });

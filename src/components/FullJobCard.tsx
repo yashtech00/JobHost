@@ -1,11 +1,40 @@
-import React from 'react';
-import { Pencil, Trash2 } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { IndianRupee, MapPin, Pencil, Trash2 } from 'lucide-react';
 import {  useParams, useRouter } from 'next/navigation';
+import { ApplicantGetProp } from '@/types';
 
 export function FullJobCard({ job }: { job: Jobprop }) {
     const params = useParams<{id:string}>()
         const jobId = params?.id;
-        const router = useRouter()
+        const id = params?.id;
+        const router = useRouter();
+        const [applicants, setApplicants] = useState<ApplicantGetProp[]>([]);
+  useEffect(() => {
+    const fetchApplicantCount = async () => {
+      try {
+        console.log(`Fetching applicants for job: ${id}`);
+        
+        const res = await fetch(`/api/applicant/appli/${jobId}`, {
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'Application/json',
+          },
+        });
+        const data = await res.json();
+        console.log("Applicant data:", data);
+        setApplicants(data);
+       
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
+    if (jobId) {
+      fetchApplicantCount();
+    }
+  }, [jobId]);
+
   const handleEdit = async() => {
     try{
         const res = await fetch(`/api/jobstream/${jobId}`,{
@@ -57,9 +86,10 @@ export function FullJobCard({ job }: { job: Jobprop }) {
   };
 
   return (
-    <div className="flex justify-center mt-20 ">
+    
+    <div className="min-h-screen bg-emerald-50 flex items-center justify-center">
       
-    <div className="bg-white p-6 max-w-2xl shadow-black shadow-lg rounded-lg w-[900px]">
+    <div className="bg-white p-6 max-w-2xl shadow-gray-400 shadow-lg rounded-2xl w-[900px]  ">
       <div className="space-y-4 ">
        
         <div className="flex justify-between items-start">
@@ -89,18 +119,46 @@ export function FullJobCard({ job }: { job: Jobprop }) {
         </div>
         {/* Location and Salary */}
         <div className="flex flex-wrap gap-4">
-          <div className="flex items-center px-3 py-1 bg-gray-100 rounded-full">
-            <span className="text-gray-600">{job.location}</span>
+          <div className="flex items-center px-3 py-1 bg-green-100 rounded-full">
+          <MapPin className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+            <span className="text-green-700 px-2">{job.location}</span>
           </div>
           <div className="flex items-center px-3 py-1 bg-green-100 rounded-full">
-            <span className="text-green-700 font-medium">{job.salary}</span>
+          <IndianRupee  className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+            <span className="text-green-700 font-medium px-2"> {job.salary/100000} lacs</span>
           </div>
           <div className="flex items-center px-3 py-1 bg-green-100 rounded-full">
-            <span className="text-green-700 font-medium">{job.experience}</span>
+            <span className="text-green-700 font-medium">{job.experience}+ Exps</span>
           </div>
         </div>
+        {/* Number of Applicants */}
+        <div className="pt-4 border-t border-gray-200">
+            
+              <div className='flex '>
+              <p className="text-sm text-gray-500">
+              Number of Applicants: 
+              </p>
+              <div className=' bg-purple-800 text-white mx-2 px-1 rounded-full'>{applicants.length}
+              </div>
+              </div>
+           
+          </div>
 
-        {/* Description */}
+          {/* Applicant Details */}
+          <div className="pt-4 border-t border-gray-200">
+
+            <div className="flex items-center px-3 py-1 bg-green-100 rounded-full w-1/5">
+          
+            <span className="text-green-700 px-2">Applications:</span>
+          </div>
+            <ul className="list-disc pl-5">
+              {applicants.map((applicant) => (
+                <li key={applicant.id} className="text-sm text-gray-600">
+                  {applicant.user.name} - {applicant.resume}
+                </li>
+              ))}
+            </ul>
+          </div>
        
 
         {/* Footer */}
@@ -112,5 +170,6 @@ export function FullJobCard({ job }: { job: Jobprop }) {
       </div>
     </div>
     </div>
+    
   );
 }

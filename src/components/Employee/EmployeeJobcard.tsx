@@ -1,3 +1,4 @@
+import { Briefcase, IndianRupee, MapPin } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -55,12 +56,12 @@ export function Empjobcard() {
                   <Link
                     href={{
                       pathname: `/empjob/${empjob.id}`,
-                      
                     }}
                   >
-                 
                     <div className="bg-white rounded-xl shadow-md overflow-hidden border border-emerald-100 transition-all duration-300 hover:shadow-lg hover:border-emerald-300">
                       <div className="p-6">
+                        <div className="flex justify-between">
+                        <div>
                         <h3 className="text-xl font-semibold truncate">
                           {empjob.title}
                         </h3>
@@ -70,20 +71,32 @@ export function Empjobcard() {
                         <p className="text-gray-600 mt-4 line-clamp-3">
                           {empjob.description}
                         </p>
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-4 pt-4 border-t border-emerald-100">
-                          <div className="mb-2 sm:mb-0">
-                          <span className="font-bold">{empjob.experience}</span>
-                          <span className="mx-2">•</span>
-                            <span className="font-bold">{empjob.salary}</span>
-                           
-                            <span className="mx-2">•</span>
+                        </div>
+                        <div className="mb-2 sm:mb-0">
                             <span>
                               {Array.isArray(empjob.jobtype)
                                 ? empjob.jobtype.join(", ")
                                 : empjob.jobtype}
                             </span>
                           </div>
-                          <div className="font-medium">{empjob.location}</div>
+                          </div>
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-4 pt-4 border-t border-emerald-100">
+                        <div className="flex flex-wrap gap-3 sm:gap-4 mb-4 text-gray-600 text-sm sm:text-base">
+                          <div className="flex items-center gap-2">
+                            <Briefcase className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                            <span>{empjob.experience}+ Exp</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <MapPin className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                            <span>{empjob.location}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <IndianRupee className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                            <span>{empjob.salary / 100000} Lacs</span>
+                          </div>
+                        </div>
+                       
+                          
                         </div>
                       </div>
                     </div>
