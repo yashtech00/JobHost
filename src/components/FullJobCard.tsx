@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { IndianRupee, MapPin, Pencil, Trash2 } from 'lucide-react';
 import {  useParams, useRouter } from 'next/navigation';
 import { ApplicantGetProp, Jobprop } from '@/types';
+import { toast, Toaster } from 'sonner';
 
 export function FullJobCard({ job }: { job: Jobprop }) {
     const params = useParams<{id:string}>()
@@ -62,9 +63,11 @@ export function FullJobCard({ job }: { job: Jobprop }) {
             },
             body:JSON.stringify(job)
         })
+        toast.success("job deleted successfully")
         router.push('/Empdashboard')
     }catch(e){
         console.error(e);
+        toast.error("Error deleting job")
     }
     console.log('Delete job:', job.title);
   };
@@ -171,6 +174,7 @@ export function FullJobCard({ job }: { job: Jobprop }) {
         </div>
      
     </div>
+    <Toaster richColors/>
     </div>
   );
 }

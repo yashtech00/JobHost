@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Building2, MapPin, Briefcase, DollarSign, Clock, FileText } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { PostJobprop } from '@/types';
+import { toast, Toaster } from 'sonner';
 
 
 
@@ -39,7 +40,7 @@ export function Empjobpost({onJobCreated}) {
         }  
 
         const json = await res.json();
-        
+        toast.success("Job added successfully")
         console.log(json, "yash emp json");     
         setFormData({ 
             
@@ -53,10 +54,12 @@ export function Empjobpost({onJobCreated}) {
             createdAt:new Date()
           }); 
         onJobCreated(json)
+
           router.push(`/empjob/${json.id}`);
     }catch(e){
         console.error(e);
-        console.log("error 500");      
+        console.log("error 500"); 
+        toast.error("Error while adding job")     
     }  
   };
 
@@ -207,6 +210,7 @@ export function Empjobpost({onJobCreated}) {
           </form>
         </div>
       </div>
+      <Toaster richColors/>
     </div>
   );
 }

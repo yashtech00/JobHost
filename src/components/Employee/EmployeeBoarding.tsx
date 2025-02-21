@@ -65,7 +65,7 @@ export function EmpBoarding() {
   }  
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen  py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
         <div className="px-8 py-6">
           <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">Employee Profile</h2>
@@ -80,7 +80,7 @@ export function EmpBoarding() {
                   id="name"
                   type="text"
                   required
-                  className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                   onChange={(e) => setName(e.target.value)}
                   placeholder="John Doe"
                 />
@@ -94,7 +94,7 @@ export function EmpBoarding() {
                   id="email"
                   type="email"
                   required
-                  className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="john@example.com"
                 />
@@ -108,7 +108,7 @@ export function EmpBoarding() {
                   id="company"
                   type="text"
                   required
-                  className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                   onChange={(e) => setCompanyname(e.target.value)}
                   placeholder="Acme Inc."
                 />
@@ -122,7 +122,7 @@ export function EmpBoarding() {
                   id="phone"
                   type="tel"
                   required
-                  className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                   onChange={(e) => setPhonenumber((e.target.value))}
                   placeholder="123-456-7890"
                 />
@@ -132,7 +132,7 @@ export function EmpBoarding() {
             <div className="pt-4">
               <Button
                 type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-colors duration-200"
               >
                 Submit Profile
               </Button>

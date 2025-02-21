@@ -13,6 +13,7 @@ import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 import { ApplicantProp, Jobprop } from "@/types";
 import { Briefcase, MapPin, DollarSign, Clock } from "lucide-react";
+import { toast, Toaster } from "sonner";
 
 export function UserFullJobCard({ job }: { job: Jobprop }) {
   const [applyjob, setApplyjob] = useState<ApplicantProp[]>([]);
@@ -42,9 +43,11 @@ export function UserFullJobCard({ job }: { job: Jobprop }) {
 
       const json = await res.json();
       setApplyjob([...applyjob, json.response]);
+      toast.success("Successfully Applied")
       router.push('/dashboard');
     } catch (e) {
       console.error(e);
+      toast.success("Error While Applying")
     }
   }
 
@@ -160,6 +163,7 @@ export function UserFullJobCard({ job }: { job: Jobprop }) {
           </form>
         </CardFooter>
       </Card>
+      <Toaster richColors/>
     </div>
   );
 }

@@ -17,6 +17,7 @@ import { SignInFlow } from "../../types/auth-types";
 import { signIn } from "next-auth/react";
 
 import { useRouter } from "next/navigation";
+import { toast, Toaster } from "sonner";
 
 interface SignupProp {
   setFormType: (state: SignInFlow) => void;
@@ -31,6 +32,7 @@ export default function EmpSignIncard({ setFormType: setState }: SignupProp) {
 
   const signinWithProvider = async (provider: "github" | "credentials") => {
     try {
+      toast.loading("Loading...")
       if (provider === "credentials") {
         const res = signIn(provider, {
           data: {
@@ -43,8 +45,10 @@ export default function EmpSignIncard({ setFormType: setState }: SignupProp) {
         res.then((res) => {
           if (res?.error) {
             setError(res.error);
+            toast.error("Invalid credentials");
           }
-          if (!res?.error) {
+          else {
+            toast.success("Successfully signed up!");
             router.push("/");
           }
           setPending(false);
@@ -60,12 +64,17 @@ export default function EmpSignIncard({ setFormType: setState }: SignupProp) {
         res.then((res) => {
           if (res?.error) {
             setError(res.error);
+            toast.error("Failed to sign up with GitHub");
+          } else {
+            toast.success("Successfully signed up with GitHub!");
           }
           setPending(false);
         });
       }
     } catch (err) {
       console.error(err);
+      toast.error("An unexpected error occurred");
+      setPending(false);
     }
   };
 
@@ -173,6 +182,7 @@ export default function EmpSignIncard({ setFormType: setState }: SignupProp) {
           </p>
         </CardFooter>
       </Card>
+      <Toaster richColors/>
     </div>
   );
 }
