@@ -7,14 +7,14 @@ import { useRouter } from "next/navigation";
 interface EmpFormProp {
   name: string;
   email: string;
-  phonenumber: number;
+  phonenumber: string;
   companyname: string;
 }
 
 export function EmpBoarding() {
   const [empformdata, setEmpformdata] = useState<EmpFormProp[]>([]);
   const [name, setName] = useState("");
-  const [phonenumber, setPhonenumber] = useState(0);
+  const [phonenumber, setPhonenumber] = useState("");
   const [companyname, setCompanyname] = useState("");
   const [email, setEmail] = useState("");
   const router = useRouter();
@@ -31,6 +31,8 @@ export function EmpBoarding() {
     };  
   
     try {  
+      console.log("before emp board");
+      
       const response = await fetch("/api/empauth", {  
         method: "POST",  
         credentials: "include",  
@@ -121,7 +123,7 @@ export function EmpBoarding() {
                   type="tel"
                   required
                   className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                  onChange={(e) => setPhonenumber(Number(e.target.value))}
+                  onChange={(e) => setPhonenumber((e.target.value))}
                   placeholder="123-456-7890"
                 />
               </div>

@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { authoptions } from "../../../../lib/auth-options";
 import { getServerSession } from "next-auth";
 import prisma from "../../../../lib/db";
+import { empjobSchema } from "../../../../Schema/credentials-schema";
+import { parse } from "path";
 
 export async function POST(req: NextRequest) {
  
@@ -20,23 +22,28 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
    
+    const empjobparse = empjobSchema.safeParse(body)
+    if(!empjobparse.success){
+      return NextResponse.json({
+        message:"Invaild job data",
+        error:empjobparse.error
+      },{
+        status:400
+      })
+    }
     
-    
-      const salary = parseInt(body.salary, 10) || 0; // Default to 0 if parsing fails  
-      const experience = parseInt(body.experience, 10) || 0; // Default to 0 if parsing fails  
-     
+     const {title, description,company, salary, location, jobtype, experience} = empjobparse.data;
       
       
       const response = await prisma.job.create({  
         data: {  
-
-          title: body.title || "",  
-          description: body.description || "",  
-          company: body.company || "",  
-          salary: salary,  
-          location: body.location || "",  
-          jobtype: body.jobtype || "",  
-          experience: experience,  
+          title,  
+          description,  
+          company,  
+          salary,  
+          location,  
+          jobtype,  
+          experience,  
           userId: session?.user.id,  
         },  
       });

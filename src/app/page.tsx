@@ -6,7 +6,7 @@ import { HeroSection } from "@/components/Landingpage/HeroSection";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col ">
+    <div className="flex min-h-screen flex-col">
       <Appbar />
       <div className="mt-24">
       <HeroSection />

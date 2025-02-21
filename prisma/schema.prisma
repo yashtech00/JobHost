@@ -27,10 +27,10 @@ model User {
 
 model Employee {
   id          String @id @default(uuid())
-  name        String
+  name        String?
   email       String @unique
-  companyname String
-  phonenumber String
+  companyname String?
+  phonenumber String?
   userId      String
   user        User   @relation(fields: [userId], references: [id])
 }

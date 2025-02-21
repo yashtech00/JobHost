@@ -37,7 +37,7 @@ export function DropDown() {
   return (
     <div className="flex items-center space-x-4">
       {session?.user ? (
-        <div className="relative">
+        <div className="relative z-20">
           <button
             type="button"
             id="dropdownToggle"
@@ -63,7 +63,6 @@ export function DropDown() {
               />
             </svg>
           </button>
-
           {isOpen && (
             <ul
               id="dropdownMenu"
@@ -104,20 +103,17 @@ export function DropDown() {
           >  
             I am a Job Seeker  
           </Button> 
+          <Button
+                onClick={() => {
+                  router.push("/Employeeauth");
+                }}
+                className="relative rounded px-5 py-2 overflow-hidden group bg-emerald-500 hover:bg-gradient-to-r hover:from-emerald-500 hover:to-emerald-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-emerald-400 transition-all ease-out duration-300"
+              >
+                <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                <span className="relative">Employer Login</span>
+              </Button>
 
-
-          <Link  
-            href={{  
-              pathname: "/Employeeauth",  
-              query: {  
-                authtype: "signUp",  
-              },  
-            }}  
-            className="relative rounded px-5 py-2 overflow-hidden group bg-emerald-500 hover:bg-gradient-to-r hover:from-emerald-500 hover:to-emerald-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-emerald-400 transition-all ease-out duration-300"  
-          >  
-            <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>  
-            <span className="relative">Employer Login</span>  
-          </Link>  
+          
         </>
       )}
     </div>

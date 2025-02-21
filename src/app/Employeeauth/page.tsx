@@ -16,9 +16,9 @@ export default function Employeeauth() {
   const router = useRouter(); 
   console.log(session);   
 
-//   if (session.status === "authenticated") {  
-//     router.push("/dashboard"); // Use router.push without return  
-//   }  
+  if (session.status === "authenticated") {  
+    router.push("/Empdashboard"); // Use router.push without return  
+  }  
 
   return <Empauthscreen authtype={formType} />;  
 }

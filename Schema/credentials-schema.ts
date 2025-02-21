@@ -17,7 +17,17 @@ export const nameSchema = z
 
 export const empjobSchema = z.object({
     title:z.string({message:"Invaild name"}),
-    description:z.string({message:"Invaild name"}),
-    
+    description:z.string({message:"Invaild description"}),
+    company:z.string({message:"Invaild company"}),
+    salary:z.number({message:"Invaild salary"}),
+    location:z.string({message:"Invaild location"}),
+    jobtype:z.string({message:"Invaild jobtype"}),
+    experience:z.number({message:"Invaild experience"}),
+})
 
+export const empboardSchema = z.object({
+    name:z.string({message:"Invaild experience"}),
+    email:z.string().email({message:"Invaild experience"}),
+    phonenumber:z.string({message:"Invaild experience"}),
+    companyname:z.string({message:"Invaild experience"}),
 })

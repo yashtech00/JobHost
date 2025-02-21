@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 import { authoptions } from "../../../../lib/auth-options";
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "../../../../lib/db";
-
+import { empboardSchema } from "../../../../Schema/credentials-schema";
 
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authoptions);
@@ -12,14 +12,25 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    console.log(body,"yash emp body");
+    console.log(body, "yash emp body");
+    const empboardparse = empboardSchema.safeParse(body);
+    if(!empboardparse.success){
+      console.error("Validation failed:", empboardparse.error); // Log the validation error details  
+      return NextResponse.json({
+        message:"Invaild data format"
+      },{
+        status:400
+      })
+    }
+    console.log(empboardparse.data,"empfata");
     
+    const { name, companyname, phonenumber, email } = empboardparse.data;
     const response = await prisma.employee.create({
       data: {
-        name: body.name || "",
-        email: body.email || "",
-        phonenumber: String(body.phonenumber || ""),
-        companyname: body.companyname || "",
+        name,
+        email,
+        phonenumber,
+        companyname,
         userId: session?.user.id,
       },
     });

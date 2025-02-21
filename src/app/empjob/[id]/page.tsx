@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { FullJobCard } from "@/components/FullJobCard";
 import { useParams } from "next/navigation";
 import Appbar from "@/components/Appbar/Appbar";
+import { EmpAppbar } from "@/components/Appbar/EmpAppbar";
 
 export default function Job() {
 
@@ -50,13 +51,13 @@ export default function Job() {
 
   return (
     <div>
-         <Appbar/>
+         <EmpAppbar/>
       {loading ? (
         <div>Loading job details...</div>
       ) : error ? (
         <div className="text-red-500">{error}</div>
       ) : job ? (
-        <div className="bg-emerald-50">
+        <div className="">
         <FullJobCard job={job} /></div>
       ) : (
         <div>Job not found.</div>

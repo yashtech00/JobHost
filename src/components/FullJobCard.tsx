@@ -86,10 +86,10 @@ export function FullJobCard({ job }: { job: Jobprop }) {
   };
 
   return (
-    
-    <div className="min-h-screen bg-emerald-50 flex items-center justify-center">
+    <div className='min-h-screen  flex items-center justify-center'>
+    <div className=" mt-32 bg-white p-6  shadow-gray-400 shadow-lg rounded-2xl w-[900px] ">
       
-    <div className="bg-white p-6 max-w-2xl shadow-gray-400 shadow-lg rounded-2xl w-[900px]  ">
+    <div className=" ">
       <div className="space-y-4 ">
        
         <div className="flex justify-between items-start">
@@ -114,7 +114,7 @@ export function FullJobCard({ job }: { job: Jobprop }) {
             </button>
           </div>
         </div>
-        <div className="prose prose-gray max-w-none">
+        <div className="prose prose-gray text-sm">
           <p className="text-gray-600 whitespace-pre-line">{job.description}</p>
         </div>
         {/* Location and Salary */}
@@ -131,35 +131,7 @@ export function FullJobCard({ job }: { job: Jobprop }) {
             <span className="text-green-700 font-medium">{job.experience}+ Exps</span>
           </div>
         </div>
-        {/* Number of Applicants */}
-        <div className="pt-4 border-t border-gray-200">
-            
-              <div className='flex '>
-              <p className="text-sm text-gray-500">
-              Number of Applicants: 
-              </p>
-              <div className=' bg-purple-800 text-white mx-2 px-1 rounded-full'>{applicants.length}
-              </div>
-              </div>
-           
-          </div>
-
-          {/* Applicant Details */}
-          <div className="pt-4 border-t border-gray-200">
-
-            <div className="flex items-center px-3 py-1 bg-green-100 rounded-full w-1/5">
-          
-            <span className="text-green-700 px-2">Applications:</span>
-          </div>
-            <ul className="list-disc pl-5">
-              {applicants.map((applicant) => (
-                <li key={applicant.id} className="text-sm text-gray-600">
-                  {applicant.user.name} - {applicant.resume}
-                </li>
-              ))}
-            </ul>
-          </div>
-       
+        
 
         {/* Footer */}
         <div className="pt-4 border-t border-gray-200">
@@ -169,7 +141,36 @@ export function FullJobCard({ job }: { job: Jobprop }) {
         </div>
       </div>
     </div>
+    {/* Number of Applicants */}
+    <div className="pt-4 border-t border-gray-200">
+            
+            <div className='flex '>
+            <p className="text-sm text-gray-500">
+            Number of Applicants: 
+            </p>
+            <div className=' bg-purple-800 text-white mx-2 px-1 rounded-full'>{applicants.length}
+            </div>
+            </div>
+         
+        </div>
+
+        {/* Applicant Details */}
+        <div className="pt-4 border-t border-gray-200">
+
+          <div className="flex items-center px-3 py-1 bg-green-100 rounded-full w-1/5">
+        
+          <span className="text-green-700 px-2">Applications:</span>
+        </div>
+          <ul className="list-disc pl-5">
+            {applicants.map((applicant) => (
+              <li key={applicant.id} className="text-sm text-gray-600">
+                {applicant.user.name} - {applicant.resume}
+              </li>
+            ))}
+          </ul>
+        </div>
+     
     </div>
-    
+    </div>
   );
 }
