@@ -17,6 +17,8 @@ export const Confirmation: React.FC<ConfirmationProps> = ({ onBack }) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
+      console.log();
+      
       // TODO: Replace with your actual API endpoint
       const response = await fetch('/api/stepper', {
         method: 'POST',
@@ -25,6 +27,7 @@ export const Confirmation: React.FC<ConfirmationProps> = ({ onBack }) => {
         },
         body: JSON.stringify(formData),
       });
+       console.log(response);
        
       if (!response.ok) {
         throw new Error('Submission failed');

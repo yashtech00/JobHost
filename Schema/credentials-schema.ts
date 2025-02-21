@@ -32,26 +32,29 @@ export const empboardSchema = z.object({
     companyname:z.string({message:"Invaild experience"}),
 })
 
-export const ProfileSchema = z.object({
-    username:z.string({message:"Invaild experience"}),
-    firstName:z.string().email({message:"Invaild experience"}),
-    lastName:z.string({message:"Invaild experience"}),
-    email:z.string({message:"Invaild experience"}),
-    country:z.string({message:"Invaild country"}),
-    streetAddress:z.string({message:"Invaild streetAddress"}),
-    city:z.string({message:"Invaild city"}),
-    state:z.string({message:"Invaild state"}),
-    postalCode:z.string({message:"Invaild postalCode"}),
-    workingYear:z.number({message:"Invaild workingYear"}),
-    workingMonth:z.number({message:"Invaild workingMonth"}),
-    links:z.string({message:"Invaild links"}),
-    resume:z.string({message:"Invaild resume"}),
-    education:z.string({message:"Invaild education"}),
-    gender:z.string({message:"Invaild gender"}),
-   
-    profilePic:z.string({message:"Invaild profilePic"}),
-    preferedJobTitle:z.string({message:"Invaild preferedJobTitle"}),
-    preferedLocation:z.string({message:"Invaild profilePic"}),
-    skills:z.string({message:"Invaild profilePic"}),
-})
+const PersonalInfoSchema = z.object({  
+    firstName: z.string({ message: "Invalid first name" }),  
+    lastName: z.string({ message: "Invalid last name" }),    
+    country: z.string({ message: "Invalid country" }),  
+    streetAddress: z.string({ message: "Invalid street address" }),  
+    city: z.string({ message: "Invalid city" }),  
+    state: z.string({ message: "Invalid state" }),  
+    postalCode: z.string({ message: "Invalid postal code" }),  
+    gender: z.string({ message: "Invalid gender" }),  
+});  
 
+const AccountInfoSchema = z.object({  
+    username: z.string({ message: "Invalid username" }),  
+    education: z.string({ message: "Invalid education" }),  
+    preferedJobTitle: z.string({ message: "Invalid preferred job title" }).optional(),  
+    preferedLocation: z.string({ message: "Invalid preferred location" }).optional(),  
+    skills: z.string({ message: "Invalid skills" }).optional(),  
+    workingMonth: z.number({ message: "Invalid working month" }),  
+    workingYear: z.number({ message: "Invalid working year" }),  
+    links: z.string({ message: "Invalid links" }).optional(),  
+});  
+
+export const ProfileSchema = z.object({  
+    personalInfo: PersonalInfoSchema,  
+    accountInfo: AccountInfoSchema,  
+});  
