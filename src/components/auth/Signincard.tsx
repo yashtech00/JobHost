@@ -17,6 +17,7 @@ import { SignInFlow } from "../../types/auth-types";
 import { signIn } from "next-auth/react";
 
 import { useRouter } from "next/navigation";
+import { toast, Toaster } from "sonner";
 
 
 interface SignupProp {
@@ -104,6 +105,7 @@ export default function SignIncard({ setFormType: setState }: SignupProp) {
               disabled={pending}
               onClick={() => {
                 handleGithub("github");
+                toast.success('Event has been created')
               }}
             >
               <Github className="mr-2 h-4 w-4" />
@@ -157,6 +159,9 @@ export default function SignIncard({ setFormType: setState }: SignupProp) {
               type="submit"
               className="w-full bg-emerald-600 hover:bg-emerald-500 text-white"
               disabled={pending}
+              onClick={()=>{
+                toast.success('Event has been created')
+              }}
             >
               {pending ? "Creating account..." : "Create account"}
             </Button>
@@ -174,6 +179,7 @@ export default function SignIncard({ setFormType: setState }: SignupProp) {
           </p>
         </CardFooter>
       </Card>
+      <Toaster richColors/>
     </div>
   );
 }

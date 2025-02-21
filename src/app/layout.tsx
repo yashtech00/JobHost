@@ -30,7 +30,7 @@ export default function RootLayout({
       >
         <Providers>
         {children}
-        <Toaster />
+        
         </Providers>
       </body>
     </html>
