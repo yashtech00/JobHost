@@ -83,16 +83,16 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md bg-zinc-900 border-zinc-800">
+    <div className="min-h-screen  flex items-center justify-center p-4">
+      <Card className="w-full max-w-md shadow-xl rounded-xl">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold tracking-tight text-white">
+          <CardTitle className="text-2xl font-bold tracking-tight ">
             Join us
           </CardTitle>
-          <CardTitle className="text-2xl font-bold tracking-tight text-white">
+          <CardTitle className="text-2xl font-bold tracking-tight ">
             Create a HackerRank account
           </CardTitle>
-          <CardDescription className="text-zinc-400 mt-4">
+          <CardDescription className="text-zinc-400 text-5xl mt-4">
             Be part of a 23 million-strong community of developers
           </CardDescription>
         </CardHeader>
@@ -119,7 +119,7 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
           </div>
           <form onSubmit={handleCredentials} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-white">
+              <Label htmlFor="name" className="">
                 Name
               </Label>
               <Input
@@ -128,12 +128,12 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
                 placeholder="John Doe"
                 disabled={pending}
                 required
-                className="bg-zinc-800 border-zinc-700 text-white placeholder:text-zinc-500"
+                className=""
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-white">
+              <Label htmlFor="email" className="">
                 Email
               </Label>
               <Input
@@ -142,12 +142,12 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
                 placeholder="m@example.com"
                 disabled={pending}
                 required
-                className="bg-zinc-800 border-zinc-700 text-white placeholder:text-zinc-500"
+                className=" "
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-white">
+              <Label htmlFor="password" className="">
                 Password
               </Label>
               <Input
@@ -156,7 +156,7 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
                 disabled={pending}
                 placeholder="*******"
                 required
-                className="bg-zinc-800 border-zinc-700 text-white"
+                className=""
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
@@ -169,7 +169,7 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
             </Button>
           </form>
         </CardContent>
-        <CardFooter>
+        <CardFooter className="flex justify-center">
           <p className="text-sm text-gray-400">
             Already have an account?{" "}
             <span

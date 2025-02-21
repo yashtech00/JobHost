@@ -27,7 +27,7 @@ export function Stepper() {
   ];
 
   return (
-    <div className="min-h-screen bg-emerald-50 py-2 ">
+    <div className="min-h-screen  py-2 mt-20 ">
       <div className="mx-auto max-w-5xl ">
         <div className="mb-8">
           <h1 className="text-center text-3xl font-bold text-gray-900">Create Your Account</h1>
@@ -43,8 +43,8 @@ export function Stepper() {
                 <div className="flex items-center">
                   {index <= currentStep ? (
                     <span className="flex items-center">
-                      <CheckCircle className="h-8 w-8 text-indigo-600" />
-                      <span className="ml-4 text-sm font-medium text-indigo-600">
+                      <CheckCircle className="h-8 w-8 text-emerald-600" />
+                      <span className="ml-4 text-sm font-medium text-emerald-600">
                         {step.label}
                       </span>
                     </span>
@@ -59,7 +59,7 @@ export function Stepper() {
                   {index < steps.length - 1 && (
                     <div className="hidden md:block absolute top-4 left-full h-0.5 w-32 bg-gray-200">
                       <div
-                        className="h-full bg-indigo-600 transition-all duration-500"
+                        className="h-full bg-emerald-600 transition-all duration-500"
                         style={{
                           width: currentStep > index ? '100%' : '0%',
                         }}

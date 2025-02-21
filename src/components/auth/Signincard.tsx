@@ -84,7 +84,7 @@ export default function SignIncard({ setFormType: setState }: SignupProp) {
 
   return (
     <div className="min-h-screen  flex items-center justify-center p-4">
-      <Card className="w-full max-w-md  ">
+      <Card className="w-full max-w-md shadow-xl rounded-xl">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold tracking-tight ">
             Welcome Back!
@@ -162,7 +162,7 @@ export default function SignIncard({ setFormType: setState }: SignupProp) {
             </Button>
           </form>
         </CardContent>
-        <CardFooter className="">
+        <CardFooter className="flex justify-center">
           <p className="text-sm text-gray-400">
             Don't have an account?{" "}
             <span

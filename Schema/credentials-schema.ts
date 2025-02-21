@@ -31,3 +31,27 @@ export const empboardSchema = z.object({
     phonenumber:z.string({message:"Invaild experience"}),
     companyname:z.string({message:"Invaild experience"}),
 })
+
+export const ProfileSchema = z.object({
+    username:z.string({message:"Invaild experience"}),
+    firstName:z.string().email({message:"Invaild experience"}),
+    lastName:z.string({message:"Invaild experience"}),
+    email:z.string({message:"Invaild experience"}),
+    country:z.string({message:"Invaild country"}),
+    streetAddress:z.string({message:"Invaild streetAddress"}),
+    city:z.string({message:"Invaild city"}),
+    state:z.string({message:"Invaild state"}),
+    postalCode:z.string({message:"Invaild postalCode"}),
+    workingYear:z.number({message:"Invaild workingYear"}),
+    workingMonth:z.number({message:"Invaild workingMonth"}),
+    links:z.string({message:"Invaild links"}),
+    resume:z.string({message:"Invaild resume"}),
+    education:z.string({message:"Invaild education"}),
+    gender:z.string({message:"Invaild gender"}),
+   
+    profilePic:z.string({message:"Invaild profilePic"}),
+    preferedJobTitle:z.string({message:"Invaild preferedJobTitle"}),
+    preferedLocation:z.string({message:"Invaild profilePic"}),
+    skills:z.string({message:"Invaild profilePic"}),
+})
+
