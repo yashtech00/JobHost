@@ -34,6 +34,7 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
   const signupWithProvider = async (provider: "github" | "credentials") => {
    
     try {
+      toast.loading("Loading...")
       if (provider === "credentials") {
         const res = signIn(provider, {
           email,
@@ -44,8 +45,10 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
         res.then((res) => {
           if (res?.error) {
             setError(res.error);
+            toast.error("Invalid credentials");
           }
-          if (!res?.error) {
+          else {
+            toast.success("Successfully signed in!");
             router.push("/");
           }
           setPending(false);
@@ -61,6 +64,10 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
             console.error(res.error);
             
             setError(res.error);
+
+            toast.error("Failed to sign in with GitHub");
+          }else{
+            toast.success("Successfully signed in with GitHub!");
           }
           console.log(res);
           setPending(false);
@@ -68,6 +75,8 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
       }
     } catch (error) {
       console.log(error);
+      toast.error("An unexpected error occurred");
+      setPending(false);
     }
   };
 
@@ -105,7 +114,6 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
             className="w-full bg-zinc-800 hover:bg-zinc-700 text-white border-zinc-700"
             disabled={pending}
             onClick={() =>{ handleGithub("github")
-              toast.success('Event has been created')
             }}
           >
             <Github className="mr-2 h-4 w-4" /> Continue with GitHub
@@ -167,9 +175,7 @@ export default function SignUpcard({ setFormType: setState }: SignupProp) {
               type="submit"
               className="w-full bg-emerald-600 hover:bg-emerald-500 text-white"
               disabled={pending} // Maintain button state based on pending
-              onClick={()=>{
-                toast.success('Event has been created')
-              }}
+              
             >
               {pending ? "Creating account..." : "Create account"}
             </Button>

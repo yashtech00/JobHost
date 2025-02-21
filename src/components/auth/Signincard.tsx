@@ -15,10 +15,8 @@ import {
 } from "@/components/ui/card";
 import { SignInFlow } from "../../types/auth-types";
 import { signIn } from "next-auth/react";
-
 import { useRouter } from "next/navigation";
 import { toast, Toaster } from "sonner";
-
 
 interface SignupProp {
   setFormType: (state: SignInFlow) => void;
@@ -33,6 +31,8 @@ export default function SignIncard({ setFormType: setState }: SignupProp) {
 
   const signinWithProvider = async (provider: "github" | "credentials") => {
     try {
+      toast.loading("Signing in...");
+      
       if (provider === "credentials") {
         const res = signIn(provider, {
           data: {
@@ -45,13 +45,15 @@ export default function SignIncard({ setFormType: setState }: SignupProp) {
         res.then((res) => {
           if (res?.error) {
             setError(res.error);
-          }
-          if (!res?.error) {
+            toast.error("Invalid credentials");
+          } else {
+            toast.success("Successfully signed in!");
             router.push("/");
           }
           setPending(false);
         });
       }
+      
       if (provider === "github") {
         const res = signIn(provider, {
           data: {
@@ -62,12 +64,17 @@ export default function SignIncard({ setFormType: setState }: SignupProp) {
         res.then((res) => {
           if (res?.error) {
             setError(res.error);
+            toast.error("Failed to sign in with GitHub");
+          } else {
+            toast.success("Successfully signed in with GitHub!");
           }
           setPending(false);
         });
       }
     } catch (err) {
       console.error(err);
+      toast.error("An unexpected error occurred");
+      setPending(false);
     }
   };
 
@@ -77,6 +84,7 @@ export default function SignIncard({ setFormType: setState }: SignupProp) {
     setPending(true);
     signinWithProvider("credentials");
   };
+
   const handleGithub = (provider: "github") => {
     setError("");
     setPending(true);
@@ -84,13 +92,13 @@ export default function SignIncard({ setFormType: setState }: SignupProp) {
   };
 
   return (
-    <div className="min-h-screen  flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center p-4">
       <Card className="w-full max-w-md shadow-xl rounded-xl">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold tracking-tight ">
+          <CardTitle className="text-2xl font-bold tracking-tight">
             Welcome Back!
           </CardTitle>
-          <CardTitle className="text-2xl font-bold tracking-tight ">
+          <CardTitle className="text-2xl font-bold tracking-tight">
             Login to your account
           </CardTitle>
           <CardDescription className="text-zinc-400 text-5xl">
@@ -103,10 +111,7 @@ export default function SignIncard({ setFormType: setState }: SignupProp) {
               variant="outline"
               className="w-full bg-zinc-800 hover:bg-zinc-700 text-white border-zinc-700"
               disabled={pending}
-              onClick={() => {
-                handleGithub("github");
-                toast.success('Event has been created')
-              }}
+              onClick={() => handleGithub("github")}
             >
               <Github className="mr-2 h-4 w-4" />
               Continue with GitHub
@@ -124,46 +129,35 @@ export default function SignIncard({ setFormType: setState }: SignupProp) {
           </div>
           <form onSubmit={handleCredentials} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email" className="">
-                Email
-              </Label>
+              <Label htmlFor="email">Email</Label>
               <Input
+                id="email"
                 value={email}
                 type="email"
                 placeholder="m@example.com"
                 disabled={pending}
                 required
-                className=" "
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password" className="">
-                Password
-              </Label>
+              <Label htmlFor="password">Password</Label>
               <Input
+                id="password"
                 type="password"
                 value={password}
                 disabled={pending}
                 placeholder="*******"
                 required
-                className=""
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <Button
               type="submit"
               className="w-full bg-emerald-600 hover:bg-emerald-500 text-white"
               disabled={pending}
-              onClick={()=>{
-                toast.success('Event has been created')
-              }}
             >
-              {pending ? "Creating account..." : "Create account"}
+              {pending ? "Signing in..." : "Sign in"}
             </Button>
           </form>
         </CardContent>
@@ -179,7 +173,7 @@ export default function SignIncard({ setFormType: setState }: SignupProp) {
           </p>
         </CardFooter>
       </Card>
-      <Toaster richColors/>
+      <Toaster richColors />
     </div>
   );
 }
