@@ -5,9 +5,13 @@ import { CalendarDays, Building2, MapPin, Briefcase, IndianRupee } from "lucide-
 import { formatDistanceToNow } from "date-fns";
 import { Jobprop } from "@/types";
 
+
 export function JobCard({ userjob } : {userjob:Jobprop}) {
   console.log(userjob.id);
   
+  
+
+
   const formatTimeAgo = (date) => {
     try {
       return formatDistanceToNow(new Date(date), { addSuffix: true })
