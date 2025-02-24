@@ -1,4 +1,5 @@
 import { ChevronRight } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export function For() {
@@ -28,7 +29,7 @@ export function For() {
         <div className="">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-2">
             <div className="bg-white p-8 rounded-lg shadow-lg">
-              <img
+              <Image
                 src="https://media.istockphoto.com/id/1365133077/vector/flat-employment-agency-search-new-employees-to-hire.jpg?s=612x612&w=0&k=20&c=jjYOtMmneaIvKuG2hV2sMpFla7SEuzqhDG1wkJR1lCU="
                 alt="Job Seekers"
               />
@@ -90,7 +91,7 @@ export function For() {
               </ul>
             </div>
             <div className="bg-white p-8 rounded-lg shadow-lg">
-              <img
+              <Image
                 src="https://img.freepik.com/premium-vector/professional-stick-figure-business-office-scene-with-male-female-colleagues-working-together_1324816-15438.jpg"
                 alt="Employers"
               />

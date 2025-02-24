@@ -3,6 +3,7 @@ import { useFormContext } from './FormContext';
 import { useRouter } from 'next/navigation';
 
 import { toast, Toaster } from 'sonner';
+import Image from 'next/image';
 
 interface ConfirmationProps {
   onBack: () => void;
@@ -109,7 +110,7 @@ export const Confirmation: React.FC<ConfirmationProps> = ({ onBack }) => {
                     <p className="text-sm font-medium text-gray-500">Profile Photo</p>
                     <div className="mt-1 h-16 w-16 rounded-full bg-gray-100 flex items-center justify-center">
                       {accountInfo.photoUrl ? (
-                        <img
+                        <Image
                           src={accountInfo.photoUrl}
                           alt="Profile"
                           className="h-full w-full object-cover rounded-full"

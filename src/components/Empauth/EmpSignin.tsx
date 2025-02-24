@@ -102,7 +102,7 @@ export default function EmpSignIncard({ setFormType: setState }: SignupProp) {
             Login to your account
           </CardTitle>
           <CardDescription className="text-zinc-400 text-5xl">
-            It's nice to see you again. Ready to get job?
+            It&apos;s nice to see you again. Ready to get job?
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -173,7 +173,7 @@ export default function EmpSignIncard({ setFormType: setState }: SignupProp) {
         </CardContent>
         <CardFooter>
           <p className="text-sm text-gray-400">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <span
               className="cursor-pointer text-teal-500 hover:underline"
               onClick={() => setState("signUp")}

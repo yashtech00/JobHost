@@ -299,7 +299,7 @@ export function Jobs() {
                     <div className="max-w-md mx-auto">
                       <h3 className="text-xl font-semibold text-gray-900 mb-3">No Matching Jobs Found</h3>
                       <p className="text-gray-600 mb-6">
-                        We couldn't find any jobs matching your current filters. Try adjusting your search criteria or explore different options.
+                        We couldn&apos;t find any jobs matching your current filters. Try adjusting your search criteria or explore different options.
                       </p>
                       <button
                         onClick={() => {

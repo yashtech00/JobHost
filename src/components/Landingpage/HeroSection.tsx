@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import { Features } from "./Features";
 import { For } from "./for";
 import { Review } from "./Review";
+import Image from "next/image";
 
 
 export function HeroSection(){
@@ -36,10 +37,9 @@ export function HeroSection(){
               </div>
             </div>
             <div className="mt-6">
-              <img
-                src="https://static.vecteezy.com/system/resources/previews/001/879/474/non_2x/hiring-recruitment-design-job-vacancy-we-re-hiring-employee-open-vacancy-design-template-briefcase-and-email-cv-resume-jobs-career-illustration-for-business-card-banner-brochure-flyer-free-vector.jpg"
-                className=" h-[]"
-              />
+              <Image
+                  src="https://static.vecteezy.com/system/resources/previews/001/879/474/non_2x/hiring-recruitment-design-job-vacancy-we-re-hiring-employee-open-vacancy-design-template-briefcase-and-email-cv-resume-jobs-career-illustration-for-business-card-banner-brochure-flyer-free-vector.jpg"
+                  className=" h-[]" alt={""}              />
             </div>
           </div>
         </div>
@@ -60,7 +60,7 @@ export function HeroSection(){
             Ready to Start Your Journey?
           </h2>
           <p className="mt-4 text-emerald-50">
-            Join thousands of professionals who've found their dream jobs
+            Join thousands of professionals who&apos;ve found their dream jobs
             through our platform
           </p>
           <Link

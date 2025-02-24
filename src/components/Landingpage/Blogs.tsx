@@ -1,5 +1,6 @@
 import React from 'react';  
 import { Calendar, Clock, User } from 'lucide-react';  
+import Image from 'next/image';
 
 const blogPosts = [  
   {  
@@ -75,7 +76,7 @@ export function Blogs() {
             <div key={index}> {/* Using index as a key, ensuring it's unique */}  
               <article className="bg-white rounded-xl shadow-md overflow-hidden transition-transform hover:scale-[1.02]">  
                 <div className="h-48 overflow-hidden">  
-                  <img   
+                  <Image   
                     src={post.imageUrl}   
                     alt={post.title}   
                     className="w-full h-full object-cover"  
