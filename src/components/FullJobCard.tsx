@@ -46,6 +46,8 @@ export function FullJobCard({ job }: { job: Jobprop }) {
             },
             body:JSON.stringify(job)
         })
+        console.log(res);
+        
 
     }catch(e){
         console.error(e);

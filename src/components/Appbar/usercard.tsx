@@ -1,6 +1,7 @@
 import React from 'react';
 import { MapPin, Building2, Mail, Globe, Briefcase, GraduationCap, Award } from 'lucide-react';
 import { UserProp } from '@/types';
+import Image from 'next/image';
 
 
 
@@ -18,7 +19,7 @@ export function UserCard({ userdetail }: UserCardProps) {
         <div className="flex flex-col md:flex-row gap-8">
           {/* Profile Picture Section */}
           <div className="flex-shrink-0">
-            <img
+            <Image
               className="h-32 w-32 rounded-full object-cover border-4 border-white shadow-lg"
               src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
               alt={`${userdetail.firstName} ${userdetail.lastName}`}

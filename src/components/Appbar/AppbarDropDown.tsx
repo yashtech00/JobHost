@@ -6,6 +6,7 @@ import { useState, useEffect, useRef, useCallback } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { User, LayoutDashboard, LogOut } from "lucide-react"
+import Image from "next/image"
 
 export function DropDown() {
   const { data: session, status } = useSession()
@@ -45,7 +46,7 @@ export function DropDown() {
             className="px-4 py-2 flex items-center rounded-full text-primary text-sm border-2 border-emerald-300  hover:bg-accent hover:text-accent-foreground"
             aria-expanded={isOpen}
           >
-            <img
+            <Image
               src={session.user.image || "/placeholder.svg?height=28&width=28"}
               className="w-7 h-7 mr-3 rounded-full shrink-0"
               alt="User Profile"
