@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFormContext } from './FormContext';
 import { useRouter } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+
 import { toast, Toaster } from 'sonner';
 
 interface ConfirmationProps {
@@ -13,7 +13,7 @@ export const Confirmation: React.FC<ConfirmationProps> = ({ onBack }) => {
   const { personalInfo, accountInfo } = formData;
     console.log(accountInfo,"yashacc");
     const router =useRouter();
-    const session = useSession();
+    
     
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

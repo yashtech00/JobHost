@@ -5,7 +5,7 @@ import { ChevronDown, ChevronUp, Clock, Briefcase, Search } from "lucide-react"
 import { useEffect, useState } from "react"
 import { JobCard } from "./jobcard"
 import { Jobprop, JobTypeRange, SalaryRange } from "@/types"
-import { toast, Toaster } from "sonner"
+
 
 export function Jobs() {
   const [selectedSalaries, setSelectedSalaries] = useState<SalaryRange[]>([])

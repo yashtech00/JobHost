@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Building2, Mail, Globe, FileText, Briefcase, GraduationCap, Award } from 'lucide-react';
+import { MapPin, Building2, Mail, Globe, Briefcase, GraduationCap, Award } from 'lucide-react';
 import { UserProp } from '@/types';
 
 

@@ -12,12 +12,15 @@ export function JobCard({ userjob } : {userjob:Jobprop}) {
   
 
 
-  const formatTimeAgo = (date) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const formatTimeAgo = (date:any) => {
     try {
       return formatDistanceToNow(new Date(date), { addSuffix: true })
         .replace('about ', '')
         .replace('less than ', '');
     } catch (error) {
+      console.error(error);
+      
       return 'Invalid date';
     }
   };

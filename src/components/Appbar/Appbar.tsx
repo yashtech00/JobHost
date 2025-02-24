@@ -1,14 +1,10 @@
 "use client";
-
-import { Button } from "../ui/button";
-import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { DropDown } from "./AppbarDropDown";
 
 export default function Appbar() {
-  const session = useSession();
-  const router = useRouter();
+
+
 
   return (
     <div className=" fixed z-30 top-0 left-0 right-0  flex justify-between items-center px-5 py-4 md:px-10 xl:px-20 bg-white shadow-md">

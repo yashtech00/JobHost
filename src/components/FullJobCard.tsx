@@ -63,6 +63,8 @@ export function FullJobCard({ job }: { job: Jobprop }) {
             },
             body:JSON.stringify(job)
         })
+        console.log(res);
+        
         toast.success("job deleted successfully")
         router.push('/Empdashboard')
     }catch(e){

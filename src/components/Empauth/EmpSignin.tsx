@@ -26,6 +26,7 @@ interface SignupProp {
 export default function EmpSignIncard({ setFormType: setState }: SignupProp) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState("");
   const [pending, setPending] = useState(false);
   const router = useRouter();
