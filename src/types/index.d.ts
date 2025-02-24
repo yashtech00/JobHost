@@ -11,6 +11,7 @@ interface Jobprop {
 }
 
 interface PostJobprop {
+  id:string
   title: string;
   description: string;
   company: string;

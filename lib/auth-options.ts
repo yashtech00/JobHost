@@ -9,6 +9,7 @@ import prisma from "./db";
 import bcrypt from "bcryptjs";
 import { NextAuthOptions, Session } from "next-auth";
 import { JWT } from "next-auth/jwt";
+
 export const authoptions = {
   
   providers: [
@@ -84,7 +85,10 @@ export const authoptions = {
 
           return user;
         } catch (e) {
-          throw new Error("Internal server error");
+          console.error(e)
+          throw new Error("Internal server error",);
+          
+          
         }
       },
     }),

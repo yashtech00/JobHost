@@ -1,9 +1,9 @@
 
 import { getServerSession } from "next-auth";
-import { NextRequest, NextResponse } from "next/server";
+import {  NextResponse } from "next/server";
 import { authoptions } from "../../../../lib/auth-options";
 
-export const GET = async (req: NextRequest) => {
+export const GET = async () => {
   const session = await getServerSession(authoptions);
 
   if (!session?.user.id) {

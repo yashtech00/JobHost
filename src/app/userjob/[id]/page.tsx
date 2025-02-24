@@ -39,7 +39,7 @@ export default function Userjob() {
   };
   useEffect(() => {
     fetchfulljob();
-  }, []);
+  });
   return (
     <div>
       <Appbar/>

@@ -8,17 +8,20 @@ import { useState } from "react";
 
 export default function Empdashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [jobs, setJobs] = useState<Jobprop[]>([]); // State to hold job posts
  
   const openModal = () => {
     setIsModalOpen(true);
   };
 
+
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
-  const handleJobCreated = (newJob) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleJobCreated = (newJob:any) => {
     // Add the new job to the jobs state
     setJobs((prevJobs) => [newJob, ...prevJobs]);
     closeModal(); // Close the modal after job is created

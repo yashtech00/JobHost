@@ -3,7 +3,7 @@ import { authoptions } from "../../../../lib/auth-options";
 import { getServerSession } from "next-auth";
 import prisma from "../../../../lib/db";
 import { empjobSchema } from "../../../../Schema/credentials-schema";
-import { parse } from "path";
+
 
 export async function POST(req: NextRequest) {
  
@@ -100,6 +100,8 @@ export async function GET() {
       }
     );
   } catch (e) {
+    console.error(e);
+    
     return NextResponse.json(
       {
         message: "Internal server error",

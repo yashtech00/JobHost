@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 
 import { FullJobCard } from "@/components/FullJobCard";
 import { useParams } from "next/navigation";
-import Appbar from "@/components/Appbar/Appbar";
+
 import { EmpAppbar } from "@/components/Appbar/EmpAppbar";
+import { PostJobprop } from "@/types";
 
 export default function Job() {
 
