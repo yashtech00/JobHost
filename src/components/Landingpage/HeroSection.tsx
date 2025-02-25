@@ -39,7 +39,8 @@ export function HeroSection(){
             <div className="mt-6">
               <Image
                   src="https://static.vecteezy.com/system/resources/previews/001/879/474/non_2x/hiring-recruitment-design-job-vacancy-we-re-hiring-employee-open-vacancy-design-template-briefcase-and-email-cv-resume-jobs-career-illustration-for-business-card-banner-brochure-flyer-free-vector.jpg"
-                  className=" h-[]" alt={""}              />
+                  className=" " alt={""}  
+                  width={700} height={10}            />
             </div>
           </div>
         </div>

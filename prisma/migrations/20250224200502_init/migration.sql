@@ -1,9 +1,6 @@
 -- CreateEnum
 CREATE TYPE "Provider" AS ENUM ('Github', 'Credentials');
 
--- CreateEnum
-CREATE TYPE "GenderType" AS ENUM ('Male', 'Female', 'Other');
-
 -- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
@@ -18,10 +15,10 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Employee" (
     "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
+    "name" TEXT,
     "email" TEXT NOT NULL,
-    "companyname" TEXT NOT NULL,
-    "phonenumber" TEXT NOT NULL,
+    "companyname" TEXT,
+    "phonenumber" TEXT,
     "userId" TEXT NOT NULL,
 
     CONSTRAINT "Employee_pkey" PRIMARY KEY ("id")
@@ -65,17 +62,16 @@ CREATE TABLE "UserProfile" (
     "city" TEXT NOT NULL,
     "state" TEXT NOT NULL,
     "postalCode" TEXT NOT NULL,
-    "workingYear" INTEGER NOT NULL,
-    "workingMonth" INTEGER NOT NULL,
-    "currentLocations" TEXT NOT NULL,
+    "workingYear" INTEGER,
+    "workingMonth" INTEGER,
     "links" TEXT,
-    "resume" TEXT NOT NULL,
+    "resume" TEXT,
     "education" TEXT NOT NULL,
-    "gender" "GenderType" NOT NULL,
+    "gender" TEXT NOT NULL,
     "profilePic" TEXT,
-    "preferedJobTitle" TEXT NOT NULL,
-    "preferedLocation" TEXT NOT NULL,
-    "skills" TEXT NOT NULL,
+    "preferedJobTitle" TEXT,
+    "preferedLocation" TEXT,
+    "skills" TEXT,
     "userId" TEXT NOT NULL,
 
     CONSTRAINT "UserProfile_pkey" PRIMARY KEY ("id")
@@ -98,6 +94,9 @@ ALTER TABLE "Job" ADD CONSTRAINT "Job_userId_fkey" FOREIGN KEY ("userId") REFERE
 
 -- AddForeignKey
 ALTER TABLE "Applicant" ADD CONSTRAINT "Applicant_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Applicant" ADD CONSTRAINT "Applicant_jobId_fkey" FOREIGN KEY ("jobId") REFERENCES "Job"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "UserProfile" ADD CONSTRAINT "UserProfile_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

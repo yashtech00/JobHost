@@ -6,13 +6,13 @@ import { FullJobCard } from "@/components/FullJobCard";
 import { useParams } from "next/navigation";
 
 import { EmpAppbar } from "@/components/Appbar/EmpAppbar";
-import { PostJobprop } from "@/types";
+import { Jobprop} from "@/types";
 
 export default function Job() {
 
     const params = useParams<{id:string}>()
     const jobId = params?.id;
-  const [job, setJob] = useState<PostJobprop | null>(null);
+  const [job, setJob] = useState<Jobprop | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

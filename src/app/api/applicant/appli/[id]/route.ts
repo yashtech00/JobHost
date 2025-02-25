@@ -3,78 +3,95 @@ import { authoptions } from "../../../../../../lib/auth-options";
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "../../../../../../lib/db";
 
-export async function POST(req: NextRequest, { params }: { params: { id: string } }) {  
-  try {  
-      const session = await getServerSession(authoptions);  
-      const { id } =  await params;
+export async function POST(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const session = await getServerSession(authoptions);
+    const { id } = await params;
 
-      console.log("Received jobId:", id);  
+    console.log("Received jobId:", id);
 
-      if (!session?.user.id) {  
-          return NextResponse.json({ message: "Unauthenticated" }, { status: 401 });  
-      }  
+    if (!session?.user.id) {
+      return NextResponse.json({ message: "Unauthenticated" }, { status: 401 });
+    }
 
-      const body = await req.json(); // Parse JSON body  
-      const { resume } = body;  
+    const body = await req.json(); // Parse JSON body
+    const { resume } = body;
 
-      // Check if resume is valid  
-      if (!resume || typeof resume !== 'string') {  
-          return NextResponse.json({ message: "Invalid resume format" }, { status: 400 });  
-      }  
-      const jobId = id;
-      // Create the applicant record  
-      const applicant = await prisma.applicant.create({  
-          data: {  
-              resume,  
-              userId: session.user.id,  
-              jobId,  
-          },  
-      });  
+    // Check if resume is valid
+    if (!resume || typeof resume !== "string") {
+      return NextResponse.json(
+        { message: "Invalid resume format" },
+        { status: 400 }
+      );
+    }
+    const jobId = id;
+    // Create the applicant record
+    const applicant = await prisma.applicant.create({
+      data: {
+        resume,
+        userId: session.user.id,
+        jobId,
+      },
+    });
 
-      return NextResponse.json(applicant, { status: 200 });  
+    return NextResponse.json(applicant, { status: 200 });
+  } catch (e) {
+    console.error("Error while creating applicant:", e); // Log the error
+    return NextResponse.json(
+      { message: "Internal server error" },
+      { status: 500 }
+    );
+  }
+}
 
-  } catch (e) {  
-      console.error("Error while creating applicant:", e); // Log the error  
-      return NextResponse.json({ message: "Internal server error" }, { status: 500 });  
-  }  
-}  
-
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { jobId: string } }
+) {
   const session = await getServerSession(authoptions);
-  const { id } = await params;
-  console.log("Received jobId: yash : ", id);
+  const { jobId } = params; // correctly destructuring id from params
+
+  console.log("Received jobId:", jobId);
 
   if (!session?.user.id) {
-    return NextResponse.json({
-      message: "Unauthenticated"
-    }, {
-      status: 401
-    });
+    return NextResponse.json(
+      {
+        message: "Unauthenticated",
+      },
+      {
+        status: 401,
+      }
+    );
   }
 
   try {
-   
-      const applicants = await prisma.applicant.findMany({
-        where: {
-          jobId: id,
-        },
-        include: {
-          user: true,
-          job: true,
-        },
-      });
-      console.log(applicants,"yash applicants");
-      
-    return NextResponse.json(applicants, {
-      status: 200
+    const applicants = await prisma.applicant.findMany({
+      where: {
+        jobId: jobId,
+      },
+      include: {
+        user: true, // include user details
+        job: true, // include job details
+      },
     });
 
-  } catch (e) {
-    console.error(e);
-    return NextResponse.json({
-      message: "Internal server error"
-    }, {
-      status: 500
+    console.log(applicants, "Applicants retrieved");
+
+    return NextResponse.json(applicants, {
+      status: 200,
     });
+  } catch (e) {
+    console.error("Error fetching applicants:", e);
+    return NextResponse.json(
+      {
+        message: "Internal server error",
+      },
+      {
+        status: 500,
+      }
+    );
   }
 }

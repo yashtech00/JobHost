@@ -31,7 +31,7 @@ export function For() {
             <div className="bg-white p-8 rounded-lg shadow-lg">
               <Image
                 src="https://media.istockphoto.com/id/1365133077/vector/flat-employment-agency-search-new-employees-to-hire.jpg?s=612x612&w=0&k=20&c=jjYOtMmneaIvKuG2hV2sMpFla7SEuzqhDG1wkJR1lCU="
-                alt="Job Seekers"
+                alt="Job Seekers" width={700} height={10}
               />
             </div>
             <div
@@ -93,7 +93,7 @@ export function For() {
             <div className="bg-white p-8 rounded-lg shadow-lg">
               <Image
                 src="https://img.freepik.com/premium-vector/professional-stick-figure-business-office-scene-with-male-female-colleagues-working-together_1324816-15438.jpg"
-                alt="Employers"
+                alt="Employers" width={700} height={10}
               />
             </div>
           </div>

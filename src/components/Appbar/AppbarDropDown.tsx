@@ -49,7 +49,7 @@ export function DropDown() {
             <Image
               src={session.user.image || "/placeholder.svg?height=28&width=28"}
               className="w-7 h-7 mr-3 rounded-full shrink-0"
-              alt="User Profile"
+              alt="User Profile" width={28} height={28}
             />
             {session.user.name || "User"}
             <svg

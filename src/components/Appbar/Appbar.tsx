@@ -10,7 +10,8 @@ export default function Appbar() {
         <Link href={"/"}>
           <Image
             src="https://i.ibb.co/PsZFynfm/download.png"
-            className="w-[130px]" alt={""}          />
+            className="w-[130px]" alt={"image"} width={500} height={500}
+          />
         </Link>
       </div>
       <div className="flex justify-between  w-[25%]">

@@ -16,7 +16,7 @@ export function FullJobCard({ job }: { job: Jobprop }) {
         console.log(`Fetching applicants for job: ${id}`);
         
         const res = await fetch(`/api/applicant/appli/${jobId}`, {
-          method: 'GET',
+          method: "GET",
           credentials: 'include',
           headers: {
             'Content-Type': 'Application/json',
