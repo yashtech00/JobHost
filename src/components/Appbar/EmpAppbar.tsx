@@ -15,7 +15,7 @@ export function EmpAppbar() {
         <Link href={"/"}>
           <Image
             src="https://i.ibb.co/PsZFynfm/download.png"
-            className="w-[130px]" alt={""}          />
+            className="w-[130px]" alt={""} width={500} height={500}         />
         </Link>
       </div>
       <div className="flex justify-between  w-[25%]">
@@ -25,7 +25,7 @@ export function EmpAppbar() {
             <button>Dashboard</button>
           </Link>
         </div>
-        {!session?.user ? (
+        {!session?.data ? (
           <Button
             onClick={() => signOut({ callbackUrl: "/" })}
             className="relative rounded px-5 py-2 overflow-hidden group bg-emerald-500 hover:bg-gradient-to-r hover:from-emerald-500 hover:to-emerald-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-emerald-400 transition-all ease-out duration-300"

@@ -49,12 +49,12 @@ export async function POST(
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { jobId: string } }
+  { params }: { params: { id: string } }
 ) {
   const session = await getServerSession(authoptions);
-  const { jobId } = params; // correctly destructuring id from params
+  const { id } = params; // correctly destructuring id from params
 
-  console.log("Received jobId:", jobId);
+  console.log("Received jobId:", id);
 
   if (!session?.user.id) {
     return NextResponse.json(
@@ -70,7 +70,7 @@ export async function GET(
   try {
     const applicants = await prisma.applicant.findMany({
       where: {
-        jobId: jobId,
+        jobId: id,
       },
       include: {
         user: true, // include user details

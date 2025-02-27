@@ -92,24 +92,24 @@ export default function EmpSignIncard({ setFormType: setState }: SignupProp) {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md bg-zinc-900 border-zinc-800">
+    <div className="min-h-screen  flex items-center justify-center p-4">
+      <Card className="w-full max-w-md  ">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold tracking-tight text-white">
+          <CardTitle className="text-2xl font-bold tracking-tight ">
             Welcome Back!
           </CardTitle>
-          <CardTitle className="text-2xl font-bold tracking-tight text-white">
+          <CardTitle className="text-2xl font-bold tracking-tight ">
             Login to your account
           </CardTitle>
-          <CardDescription className="text-zinc-400 text-5xl">
-            It&apos;s nice to see you again. Ready to get job?
+          <CardDescription className="text-zinc-400 text-4xl">
+          We lead the industry in technical interviews for sourcing top developer talent.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
             <Button
               variant="outline"
-              className="w-full bg-zinc-800 hover:bg-zinc-700 text-white border-zinc-700"
+              className="w-full  bg-zinc-800 hover:bg-zinc-700 text-white border-zinc-700"
               disabled={pending}
               onClick={() => {
                 handleGithub("github");
@@ -131,7 +131,7 @@ export default function EmpSignIncard({ setFormType: setState }: SignupProp) {
           </div>
           <form onSubmit={handleCredentials} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-white">
+              <Label htmlFor="email" className="">
                 Email
               </Label>
               <Input
@@ -140,14 +140,14 @@ export default function EmpSignIncard({ setFormType: setState }: SignupProp) {
                 placeholder="m@example.com"
                 disabled={pending}
                 required
-                className="bg-zinc-800 border-zinc-700 text-white placeholder:text-zinc-500"
+                className=" placeholder:text-zinc-500"
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-white">
+              <Label htmlFor="password" className="">
                 Password
               </Label>
               <Input
@@ -156,7 +156,7 @@ export default function EmpSignIncard({ setFormType: setState }: SignupProp) {
                 disabled={pending}
                 placeholder="*******"
                 required
-                className="bg-zinc-800 border-zinc-700 text-white"
+                className="placeholder:text-zinc-500"
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
@@ -171,8 +171,8 @@ export default function EmpSignIncard({ setFormType: setState }: SignupProp) {
             </Button>
           </form>
         </CardContent>
-        <CardFooter>
-          <p className="text-sm text-gray-400">
+        <CardFooter className="flex justify-center">
+          <p className="text-sm text-gray-600">
             Don&apos;t have an account?{" "}
             <span
               className="cursor-pointer text-teal-500 hover:underline"

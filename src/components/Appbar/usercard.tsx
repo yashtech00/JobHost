@@ -1,9 +1,7 @@
 import React from 'react';
 import { MapPin, Building2, Mail, Globe, Briefcase, GraduationCap, Award } from 'lucide-react';
-import { UserProp } from '@/types';
+
 import Image from 'next/image';
-
-
 
 interface UserCardProps {
   userdetail: UserProp;
@@ -14,7 +12,7 @@ export function UserCard({ userdetail }: UserCardProps) {
   const skillsArray = userdetail.skills.split(',').map(skill => skill.trim());
 
   return (
-    <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+    <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden mt-32">
       <div className="p-8">
         <div className="flex flex-col md:flex-row gap-8">
           {/* Profile Picture Section */}
@@ -22,7 +20,7 @@ export function UserCard({ userdetail }: UserCardProps) {
             <Image
               className="h-32 w-32 rounded-full object-cover border-4 border-white shadow-lg"
               src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
-              alt={`${userdetail.firstName} ${userdetail.lastName}`}
+              alt={`${userdetail.firstName} ${userdetail.lastName}`} width={400} height={400}
             />
           </div>
 

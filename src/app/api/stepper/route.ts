@@ -106,11 +106,7 @@ export async function GET() {
   try{
     console.log("hello before ");
     
-    const getprofile = await prisma.userProfile.findUnique({
-        where:{
-            email:session.user.email || ""
-        }
-    })
+    const getprofile = await prisma.userProfile.findMany();
     return NextResponse.json({
         getprofile
     })

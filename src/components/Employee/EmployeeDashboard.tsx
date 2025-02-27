@@ -2,8 +2,9 @@
 import React, { useState } from 'react';
 import { Building2, MapPin, Briefcase, DollarSign, Clock, FileText } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { PostJobprop } from '@/types';
+
 import { toast, Toaster } from 'sonner';
+import { Input } from '../ui/input';
 
 
 
@@ -40,6 +41,7 @@ export function Empjobpost({onJobCreated}) {
         }  
 
         const json = await res.json();
+        onJobCreated(json)
         toast.success("Job added successfully")
         console.log(json, "yash emp json");     
         setFormData({ 
@@ -53,13 +55,15 @@ export function Empjobpost({onJobCreated}) {
             experience:0, 
             createdAt:new Date()
           }); 
-        onJobCreated(json)
+       
 
           router.push(`/empjob/${json.id}`);
     }catch(e){
         console.error(e);
+
         console.log("error 500"); 
-        toast.error("Error while adding job")     
+        toast.error("Error while adding job")  
+        // throw new Error(e);   
     }  
   };
 
@@ -169,8 +173,8 @@ export function Empjobpost({onJobCreated}) {
                     <DollarSign className="w-4 h-4" />
                     Salary
                   </label>
-                  <input
-                    type="number"
+                  <Input
+                    type="Number"
                     name="salary"
                     value={formData.salary}
                     onChange={handleChange}

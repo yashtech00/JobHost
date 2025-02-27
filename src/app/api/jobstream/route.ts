@@ -21,6 +21,7 @@ export async function POST(req: NextRequest) {
   }
   try {
     const body = await req.json();
+   console.log(body,"post");
    
     const empjobparse = empjobSchema.safeParse(body)
     if(!empjobparse.success){
@@ -31,19 +32,21 @@ export async function POST(req: NextRequest) {
         status:400
       })
     }
+    console.log(empjobparse,"empyash");
     
-     const {title, description,company, salary, location, jobtype, experience} = empjobparse.data;
+    
+     const bodys = empjobparse.data;
       
       
       const response = await prisma.job.create({  
         data: {  
-          title,  
-          description,  
-          company,  
-          salary,  
-          location,  
-          jobtype,  
-          experience,  
+          title:bodys.title || "job title",  
+          description:bodys.description || "job decription",  
+          company:bodys.company || "company",  
+          salary:bodys.salary  || 0,  
+          location:bodys.location || "world",  
+          jobtype:bodys.jobtype || "jobtype",  
+          experience:bodys.experience || 0,  
           userId: session?.user.id,  
         },  
       });

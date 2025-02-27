@@ -2,7 +2,7 @@
 import { EmpAppbar } from "@/components/Appbar/EmpAppbar";
 import { Empjobpost } from "@/components/Employee/EmployeeDashboard";
 import { Empjobcard } from "@/components/Employee/EmployeeJobcard";
-import { Jobprop } from "@/types";
+
 
 import { useState } from "react";
 

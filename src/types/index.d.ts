@@ -46,7 +46,7 @@ interface ApplicantProp {
   jobId: string;
 }
 
-export interface ApplicantGetProp {
+interface ApplicantGetProp {
   id: string;
   resume: string;
   user: {

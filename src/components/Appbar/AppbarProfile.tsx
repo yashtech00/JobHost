@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { UserProp } from "@/types";
+
 import { UserCard } from "./usercard";
 
 
@@ -22,11 +22,11 @@ export function AppbarProfile() {
         throw new Error(res.statusText);
       }
       const data = await res.json();
-      console.log(data.getprofile, "yashuser");
+      console.log(data, "yashuser");
 
       // Check if the response contains a valid user object
       if (data && typeof data === "object" && !Array.isArray(data)) {
-        setAppUser([data.getprofile]); // Directly set the user data
+        setAppUser([data.getprofile[0]]); // Directly set the user data
       } else {
         console.error("Expected an object, but received:", data);
         setAppUser([]); // or handle it as appropriate

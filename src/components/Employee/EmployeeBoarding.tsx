@@ -65,7 +65,7 @@ export function EmpBoarding() {
   }  
 
   return (
-    <div className="min-h-screen  py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen  py-12 px-4 sm:px-6 lg:px-8 mt-32">
       <div className="max-w-md mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
         <div className="px-8 py-6">
           <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">Employee Profile</h2>

@@ -15,7 +15,7 @@ export function Empjobcard() {
           method: "GET",
           credentials: "include",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "Application/json",
           },
         });
 
