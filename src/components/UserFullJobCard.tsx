@@ -11,7 +11,7 @@ import {
 } from "./ui/card";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
-import { ApplicantProp, Jobprop } from "@/types";
+
 import { Briefcase, MapPin, DollarSign, Clock } from "lucide-react";
 import { toast, Toaster } from "sonner";
 
@@ -27,6 +27,8 @@ export function UserFullJobCard({ job }: { job: Jobprop }) {
     e.preventDefault();
     try {
       const formData = { resume };
+      console.log(id,"yash id");
+      
       const res = await fetch(`/api/applicant/appli/${id}`, {
         method: "POST",
         credentials: "include",

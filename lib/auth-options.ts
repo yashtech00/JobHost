@@ -99,6 +99,8 @@ export const authoptions = {
   secret: process.env.NEXTAUTH_SECRET ?? "secret",
   session: {
     strategy: "jwt",
+    maxAge: 24 * 60 * 60, // 24 hours in seconds  
+    updateAge: 60 * 60, // 1 hour in seconds (optional: refresh session every hour) 
   },
   callbacks: {
     async jwt({ token, account, profile }) {

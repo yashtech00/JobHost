@@ -25,7 +25,7 @@ export function EmpAppbar() {
             <button>Dashboard</button>
           </Link>
         </div>
-        {!session?.data ? (
+        {!session.user ? (
           <Button
             onClick={() => signOut({ callbackUrl: "/" })}
             className="relative rounded px-5 py-2 overflow-hidden group bg-emerald-500 hover:bg-gradient-to-r hover:from-emerald-500 hover:to-emerald-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-emerald-400 transition-all ease-out duration-300"

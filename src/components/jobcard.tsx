@@ -11,7 +11,7 @@ import {
 import { formatDistanceToNow } from "date-fns";
 
 export function JobCard({ userjob }: { userjob: Jobprop }) {
-  console.log(userjob.id);
+  console.log(userjob.id,"job card userjob.id");
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const formatTimeAgo = (date: any) => {

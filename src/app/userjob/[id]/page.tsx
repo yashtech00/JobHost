@@ -2,7 +2,7 @@
 
 import Appbar from "@/components/Appbar/Appbar";
 import { UserFullJobCard } from "@/components/UserFullJobCard";
-import { Jobprop } from "@/types";
+
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -10,7 +10,7 @@ export default function Userjob() {
   const [userjob, setUserjob] = useState<Jobprop[]>([]);
   const params = useParams<{ id: string }>();
   const jobId = params?.id;
-  console.log(jobId);
+  console.log(jobId,'client job id');
 
   const fetchfulljob = async () => {
     try {
@@ -31,6 +31,7 @@ export default function Userjob() {
 
       const json = await res.json();
       
+      console.log(json.job,"userjob id client side");
       
       setUserjob(json.job);
     } catch (e) {
@@ -39,7 +40,7 @@ export default function Userjob() {
   };
   useEffect(() => {
     fetchfulljob();
-  });
+  },[]);
   return (
     <div>
       <Appbar/>

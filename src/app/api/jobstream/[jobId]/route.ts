@@ -4,7 +4,9 @@ import { getServerSession } from "next-auth";
 import { authoptions } from "../../../../../lib/auth-options";
 
 export async function GET(req: NextRequest, { params }: { params: { jobId: string } }) {
-  const { jobId } = await params;
+  const  jobId  = params.jobId;
+  console.log(jobId,"yash jobid");
+  
   const session = await getServerSession(authoptions);
 
 
@@ -58,7 +60,7 @@ export async function GET(req: NextRequest, { params }: { params: { jobId: strin
 
 export async function PUT(req: NextRequest, { params }: { params: { jobId: string } }) {
   try {
-    const { jobId } = params; // Correctly destructuring jobId
+    const  jobId  = params.jobId; // Correctly destructuring jobId
     const body = await req.json(); // Get request body
 
     // Ensure body only contains fields that are part of the Job model
@@ -103,7 +105,7 @@ export async function PUT(req: NextRequest, { params }: { params: { jobId: strin
 
 export async function DELETE(req: NextRequest, { params }: { params: { jobId: string } }) {
   try {
-    const { jobId } = params; // Correctly destructuring jobId
+    const  jobId  = params.jobId; // Correctly destructuring jobId
     await prisma.job.delete({
       where: {
         id: jobId,
