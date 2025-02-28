@@ -8,7 +8,8 @@ import { Input } from '../ui/input';
 
 
 
-export function Empjobpost({onJobCreated}) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function Empjobpost({onJobCreated} : {onJobCreated:any}) {
   const router = useRouter();
   const [formData, setFormData] = useState<PostJobprop>({
     title: '',
@@ -20,6 +21,7 @@ export function Empjobpost({onJobCreated}) {
     experience:0,
     createdAt:new Date()
   });
+  console.log(formData,"yash before try");
   
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
@@ -31,10 +33,11 @@ export function Empjobpost({onJobCreated}) {
             method:"POST",
             credentials:"include",
             headers:{
-                'Content-Type': 'application/json'
+                'Content-Type': 'Application/json'
             },
             body:JSON.stringify(formData)
         });
+        
         if (!res.ok) {  
             const errorJson = await res.json(); // Get the error message  
             throw new Error(errorJson.error || "Failed to post the job.");  
@@ -177,7 +180,7 @@ export function Empjobpost({onJobCreated}) {
                     type="Number"
                     name="salary"
                     value={formData.salary}
-                    onChange={handleChange}
+                    onChange={(e) => setFormData({ ...formData, salary: Number(e.target.value) })} 
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="e.g. 100000"
                     required
@@ -193,7 +196,7 @@ export function Empjobpost({onJobCreated}) {
                     type="number"
                     name="experience"
                     value={formData.experience}
-                    onChange={handleChange}
+                    onChange={(e) => setFormData({ ...formData, experience: Number(e.target.value) })}  
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="e.g. 1"
                     required

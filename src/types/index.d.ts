@@ -16,8 +16,8 @@ interface PostJobprop {
   company: string;
   jobtype: string;
   location: string;
-  salary: number;
   createdAt: Date;
+  salary: number;
   experience: number;
 }
 interface SalaryRange {

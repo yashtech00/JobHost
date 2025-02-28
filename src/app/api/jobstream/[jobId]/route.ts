@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 import { authoptions } from "../../../../../lib/auth-options";
 
 export async function GET(req: NextRequest, { params }: { params: { jobId: string } }) {
-  const { jobId } = params;
+  const { jobId } = await params;
   const session = await getServerSession(authoptions);
 
 

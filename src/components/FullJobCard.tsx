@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { IndianRupee, MapPin, Pencil, Trash2 } from 'lucide-react';
 import {  useParams, useRouter } from 'next/navigation';
-import { ApplicantGetProp, Jobprop } from '@/types';
+
 import { toast, Toaster } from 'sonner';
 
 export function FullJobCard({ job }: { job: Jobprop }) {
@@ -14,6 +14,7 @@ export function FullJobCard({ job }: { job: Jobprop }) {
     const fetchApplicantCount = async () => {
       try {
         console.log(`Fetching applicants for job: ${id}`);
+        console.log(`Fetching   job: ${jobId}`);
         
         const res = await fetch(`/api/applicant/appli/${jobId}`, {
           method: "GET",

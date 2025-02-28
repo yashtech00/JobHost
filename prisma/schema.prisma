@@ -72,8 +72,8 @@ model UserProfile {
   state         String
   postalCode    String
 
-  workingYear      Int?
-  workingMonth     Int?
+  workingYear      Int
+  workingMonth     Int
   links            String?
   resume           String?
   education        String
