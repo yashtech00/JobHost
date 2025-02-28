@@ -3,12 +3,14 @@ import prisma from "../../../../../lib/db";
 import { getServerSession } from "next-auth";
 import { authoptions } from "../../../../../lib/auth-options";
 
-export async function GET(req: NextRequest, { params }: { params: { jobId: string } }) {
-  const  jobId  = params.jobId;
-  console.log(jobId,"yash jobid");
-  
-  const session = await getServerSession(authoptions);
+export async function GET(
+  req: NextRequest,
+  { params }: { params: Promise<{ jobId: string }> }
+) {
+  const jobId = (await params).jobId;
+  console.log(jobId, "yash jobid");
 
+  const session = await getServerSession(authoptions);
 
   if (!session?.user.id) {
     return NextResponse.json(
@@ -27,13 +29,9 @@ export async function GET(req: NextRequest, { params }: { params: { jobId: strin
         id: jobId, // Find the job by ID
       },
     });
-   
-    
+
     if (!job) {
-      return NextResponse.json(
-        { message: "Job not found." },
-        { status: 404 }
-      );
+      return NextResponse.json({ message: "Job not found." }, { status: 404 });
     }
 
     return NextResponse.json(
@@ -58,13 +56,24 @@ export async function GET(req: NextRequest, { params }: { params: { jobId: strin
   }
 }
 
-export async function PUT(req: NextRequest, { params }: { params: { jobId: string } }) {
+export async function PUT(
+  req: NextRequest,
+  { params }: { params: { jobId: string } }
+) {
   try {
-    const  jobId  = params.jobId; // Correctly destructuring jobId
+    const jobId = params.jobId; // Correctly destructuring jobId
     const body = await req.json(); // Get request body
 
     // Ensure body only contains fields that are part of the Job model
-    const { title, description, company, jobtype, location, salary, experience } = body;
+    const {
+      title,
+      description,
+      company,
+      jobtype,
+      location,
+      salary,
+      experience,
+    } = body;
 
     const update = await prisma.job.update({
       where: {
@@ -77,7 +86,7 @@ export async function PUT(req: NextRequest, { params }: { params: { jobId: strin
         jobtype, // Ensure this matches the expected format (array, enum, etc.)
         location,
         salary,
-        experience
+        experience,
       },
     });
 
@@ -103,9 +112,17 @@ export async function PUT(req: NextRequest, { params }: { params: { jobId: strin
   }
 }
 
-export async function DELETE(req: NextRequest, { params }: { params: { jobId: string } }) {
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: Promise<{ jobId: string }> }
+) {
+  const jobId = (await params).jobId;
+  console.log(jobId,"delete jobId");
+  
   try {
-    const  jobId  = params.jobId; // Correctly destructuring jobId
+     // Correctly destructuring jobId
+    console.log(jobId, "delete jobId");
+
     await prisma.job.delete({
       where: {
         id: jobId,

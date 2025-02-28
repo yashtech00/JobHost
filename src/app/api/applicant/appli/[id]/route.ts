@@ -9,7 +9,7 @@ export async function POST(
 ) {
   try {
     const session = await getServerSession(authoptions);
-    const { id } = await params;
+    const  id  = (await params).id;
 
     console.log("Received jobId:", id);
 
@@ -49,10 +49,10 @@ export async function POST(
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params:  Promise<{ id: string }> }
 ) {
   const session = await getServerSession(authoptions);
-  const { id } = params; // correctly destructuring id from params
+  const  id  = (await params).id; // correctly destructuring id from params
 
   console.log("Received jobId:", id);
 
@@ -78,7 +78,7 @@ export async function GET(
       },
     });
 
-    console.log(applicants, "Applicants retrieved");
+    // console.log(applicants, "Applicants retrieved");
 
     return NextResponse.json(applicants, {
       status: 200,

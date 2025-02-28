@@ -62,7 +62,7 @@ export function FullJobCard({ job }: { job: Jobprop }) {
             method:"DELETE",
             credentials:"include",
             headers:{
-                "content-type":"application/json"
+                "content-type":"Application/json"
             },
             body:JSON.stringify(job)
         })
