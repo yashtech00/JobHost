@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# JobHost - Full Stack Next.js Job Portal  
 
-## Getting Started
+JobHost is a comprehensive job portal application designed to connect job seekers with employers. Built using Next.js, React.js, Node.js, PostgreSQL, and Prisma, it provides a seamless experience for job searching, hiring, and application tracking.  
 
-First, run the development server:
+## Features  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### For Job Seekers  
+- **Profile Creation**: Create and customize your profile with professional details.  
+- **Resume Upload**: Upload and manage your resumes.  
+- **Job Search**: Explore job opportunities using filters like category, location, and experience level.  
+- **Application Tracking**: Monitor the status of your job applications in real-time.  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### For Recruiters  
+- **Job Posting**: Post job listings with detailed descriptions and requirements.  
+- **Application Management**: View, filter, and manage received applications.  
+- **Candidate Shortlisting**: Identify and track potential candidates for open roles.  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Common Features  
+- **Authentication**: Secure login and signup process using JWT.  
+- **User Dashboard**: Customized dashboards for job seekers and recruiters.  
+- **Real-Time Updates**: Notifications for new job postings and application status changes.  
+- **Responsive Design**: Optimized for both desktop and mobile devices.  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech Stack  
 
-## Learn More
+### Frontend   
+- **Next.js**: Dynamic user interface and seamless navigation.  
+- **React.js**: Component-based architecture for building user interfaces.  
+- **Tailwind CSS**: Utility-first CSS framework for designing.  
+- **Shadcn-ui**: Reusable components for building UI elements.  
 
-To learn more about Next.js, take a look at the following resources:
+### Backend  
+- **Node.js**: Handles server-side logic.  
+- **Express.js**: Simplifies API creation and routing.  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Database  
+- **PostgreSQL**: Relational database for storing user profiles, job listings, and applications.  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Authentication   
+- **NextAuth**: Authentication solution for Next.js applications.  
+- **JWT (JSON Web Tokens)**: Ensures secure and stateless authentication.  
+- **bcrypt.js**: Encrypts passwords for added security.  
 
-## Deploy on Vercel
+### Additional Tools and Libraries  
+- **Prisma**: An elegant ORM for relational databases, providing type-safe database access.  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Goals of JobHost   
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Simplify the job application process for job seekers.  
+- Provide a robust platform for recruiters to find the right talent.  
+- Ensure data security and privacy for all users.  
+- Enhance user experience with a responsive and intuitive interface.
+
+## Demo
