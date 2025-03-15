@@ -47,12 +47,12 @@ export async function POST(
   }
 }
 
-export async function GET(
-  req: NextRequest,
-  { params }: { params:  Promise<{ id: string }> }
-) {
+export async function GET(req:NextRequest) {
   const session = await getServerSession(authoptions);
-  const  id  = (await params).id; // correctly destructuring id from params
+ 
+  const url = new URL(req.url);
+ const searchParams = new URLSearchParams(url.search);
+ const id = searchParams.get("id")
 
   console.log("Received jobId:", id);
 

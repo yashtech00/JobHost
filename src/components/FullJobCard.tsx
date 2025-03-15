@@ -3,7 +3,6 @@ import { IndianRupee, MapPin, Pencil, Trash2 } from 'lucide-react';
 import {  useParams, useRouter } from 'next/navigation';
 
 import { toast, Toaster } from 'sonner';
-import { json } from 'stream/consumers';
 
 export function FullJobCard({ job }: { job: Jobprop }) {
     const params = useParams<{id:string}>()
@@ -17,7 +16,7 @@ export function FullJobCard({ job }: { job: Jobprop }) {
         console.log(`Fetching applicants for job: ${id}`);
         console.log(`Fetching   job: ${jobid}`);
         
-        const res = await fetch(`/api/applicant/appli/${jobid}`, {
+        const res = await fetch(`/api/applicant/appli?jobid=${jobid}`, {
           method: "GET",
           credentials: 'include',
           headers: {
@@ -36,11 +35,11 @@ export function FullJobCard({ job }: { job: Jobprop }) {
     if (jobid) {
       fetchApplicantCount();
     }
-  }, [jobid]);
+  }, [jobid, id]);
 
   const handleEdit = async() => {
     try{
-        const res = await fetch(`/api/jobstream/${jobid}`,{
+        const res = await fetch(`/api/jobstream?jobid=${jobid}`,{
             method:"PUT",
             credentials:"include",
             headers:{
@@ -61,7 +60,7 @@ export function FullJobCard({ job }: { job: Jobprop }) {
     try{
       console.log(jobid,"client delete jobId");
       
-        const res = await fetch(`/api/jobstream/${jobid}`,{
+        const res = await fetch(`/api/jobstream?jobid=${jobid}`,{
             method:"DELETE",
             credentials:"include",
             headers:{
