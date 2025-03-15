@@ -5,11 +5,9 @@ import { authoptions } from "../../../../../lib/auth-options";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: Promise<{ jobId: string }> }
+  { params }: { params: { jobid: string } }
 ) {
-  const jobId = (await params).jobId;
-  console.log(jobId, "yash jobid");
-
+  const { jobid } = params;
   const session = await getServerSession(authoptions);
 
   if (!session?.user.id) {
@@ -26,7 +24,7 @@ export async function GET(
   try {
     const job = await prisma.job.findUnique({
       where: {
-        id: jobId, // Find the job by ID
+        id: jobid, // Find the job by ID
       },
     });
 
@@ -61,7 +59,7 @@ export async function PUT(
   { params }: { params: { jobId: string } }
 ) {
   try {
-    const jobId = params.jobId; // Correctly destructuring jobId
+    const { jobId } = params; // Correctly destructuring jobId
     const body = await req.json(); // Get request body
 
     // Ensure body only contains fields that are part of the Job model
@@ -114,14 +112,10 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: Promise<{ jobId: string }> }
+  { params }: { params: Promise<{ jobid: string }> }
 ) {
-  const jobId = (await params).jobId;
-  console.log(jobId,"delete jobId");
-  
   try {
-     // Correctly destructuring jobId
-    console.log(jobId, "delete jobId");
+    const jobId = (await params).jobid; // Correctly destructuring jobId
 
     await prisma.job.delete({
       where: {

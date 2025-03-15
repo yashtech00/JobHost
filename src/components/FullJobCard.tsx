@@ -3,10 +3,11 @@ import { IndianRupee, MapPin, Pencil, Trash2 } from 'lucide-react';
 import {  useParams, useRouter } from 'next/navigation';
 
 import { toast, Toaster } from 'sonner';
+import { json } from 'stream/consumers';
 
 export function FullJobCard({ job }: { job: Jobprop }) {
     const params = useParams<{id:string}>()
-        const jobId = params?.id;
+        const jobid = params?.id;
         const id = params?.id;
         const router = useRouter();
         const [applicants, setApplicants] = useState<ApplicantGetProp[]>([]);
@@ -14,9 +15,9 @@ export function FullJobCard({ job }: { job: Jobprop }) {
     const fetchApplicantCount = async () => {
       try {
         console.log(`Fetching applicants for job: ${id}`);
-        console.log(`Fetching   job: ${jobId}`);
+        console.log(`Fetching   job: ${jobid}`);
         
-        const res = await fetch(`/api/applicant/appli/${jobId}`, {
+        const res = await fetch(`/api/applicant/appli/${jobid}`, {
           method: "GET",
           credentials: 'include',
           headers: {
@@ -32,14 +33,14 @@ export function FullJobCard({ job }: { job: Jobprop }) {
       }
     };
 
-    if (jobId) {
+    if (jobid) {
       fetchApplicantCount();
     }
-  }, [jobId]);
+  }, [jobid]);
 
   const handleEdit = async() => {
     try{
-        const res = await fetch(`/api/jobstream/${jobId}`,{
+        const res = await fetch(`/api/jobstream/${jobid}`,{
             method:"PUT",
             credentials:"include",
             headers:{
@@ -58,14 +59,20 @@ export function FullJobCard({ job }: { job: Jobprop }) {
 
   const handleDelete = async() => {
     try{
-        const res = await fetch(`/api/jobstream/${jobId}`,{
+      console.log(jobid,"client delete jobId");
+      
+        const res = await fetch(`/api/jobstream/${jobid}`,{
             method:"DELETE",
             credentials:"include",
             headers:{
                 "content-type":"Application/json"
             },
-            body:JSON.stringify(job)
+           
         })
+        if(!res.ok){
+          console.log("error");
+          
+        }
         console.log(res);
         
         toast.success("job deleted successfully")
@@ -74,7 +81,6 @@ export function FullJobCard({ job }: { job: Jobprop }) {
         console.error(e);
         toast.error("Error deleting job")
     }
-    console.log('Delete job:', job.title);
   };
 
   const formatDate = (date: Date) => {
