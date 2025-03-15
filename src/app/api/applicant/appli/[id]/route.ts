@@ -5,12 +5,13 @@ import prisma from "../../../../../../lib/db";
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: Promise<{id:string}> }
 ) {
   try {
     const session = await getServerSession(authoptions);
-    const  id  = (await params).id;
 
+    const url = new URL(req.url);
+    const searchParams = new URLSearchParams(url.search);
+    const id = searchParams.get("id");
     console.log("Received jobId:", id);
 
     if (!session?.user.id) {
