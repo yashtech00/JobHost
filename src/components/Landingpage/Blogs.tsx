@@ -78,7 +78,10 @@ export function Blogs() {
                 <div className="h-48 overflow-hidden">  
                   <Image   
                     src={post.imageUrl}   
-                    alt={post.title}   
+                    alt={post.title} 
+                    width={500}
+                    height={500}
+                    
                     className="w-full h-full object-cover"  
                   />  
                 </div>  
