@@ -6,7 +6,7 @@ JobHost is a comprehensive job portal application designed to connect job seeker
 
 ### For Job Seekers  
 - **Profile Creation**: Create and customize your profile with professional details.  
-- **Resume Upload**: Upload and manage your resumes.  
+- **Resume Upload**: manage your resumes.  
 - **Job Search**: Explore job opportunities using filters like category, location, and experience level.  
 - **Application Tracking**: Monitor the status of your job applications in real-time.  
 
