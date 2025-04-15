@@ -3,18 +3,19 @@ import prisma from "../../../../../lib/db";
 import { getServerSession } from "next-auth";
 import { authoptions } from "../../../../../lib/auth-options";
 
-export async function GET(
-  req: NextRequest,
-  { params }: { params: { jobId: string } }
-) {
-  const { jobId } = params;
+export async function GET(req: NextRequest) {
   const session = await getServerSession(authoptions);
 
   if (!session?.user.id) {
-    return NextResponse.json(
-      { message: "Unauthenticated" },
-      { status: 401 }
-    );
+    return NextResponse.json({ message: "Unauthenticated" }, { status: 401 });
+  }
+
+  const url = new URL(req.url);
+  const searchParams = new URLSearchParams(url.search);
+  const jobId = searchParams.get("id");
+
+  if (!jobId) {
+    return NextResponse.json({ message: "job is not found" }, { status: 401 });
   }
 
   try {
@@ -41,13 +42,18 @@ export async function GET(
   }
 }
 
-
-export async function PUT(
-  req: NextRequest,
-  { params }: { params: { jobId: string } }
-) {
+export async function PUT(req: NextRequest) {
   try {
-    const { jobId } = params; // Correctly destructuring jobId
+    const url = new URL(req.url);
+    const searchParams = new URLSearchParams(url.search);
+    const jobId = searchParams.get("id");
+    if (!jobId) {
+      return NextResponse.json(
+        { message: "job is not found" },
+        { status: 401 }
+      );
+    }
+
     const body = await req.json(); // Get request body
 
     // Ensure body only contains fields that are part of the Job model
@@ -98,12 +104,17 @@ export async function PUT(
   }
 }
 
-export async function DELETE(
-  req: NextRequest,
-  { params }: { params: Promise<{ jobid: string }> }
-) {
+export async function DELETE(req: NextRequest) {
   try {
-    const jobId = (await params).jobid; // Correctly destructuring jobId
+    const url = new URL(req.url);
+    const searchParams = new URLSearchParams(url.search);
+    const jobId = searchParams.get("id");
+    if (!jobId) {
+      return NextResponse.json(
+        { message: "job is not found" },
+        { status: 401 }
+      );
+    }
 
     await prisma.job.delete({
       where: {
