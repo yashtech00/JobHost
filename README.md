@@ -53,4 +53,8 @@ JobHost is a comprehensive job portal application designed to connect job seeker
 
 ## Demo Photo
 ![2](https://github.com/user-attachments/assets/246baf1d-e717-4e2e-96bf-36671d55d318)
+![3](https://github.com/user-attachments/assets/b0eed771-fe4f-4ccb-8b25-4fc76d0b7f97)
+![4](https://github.com/user-attachments/assets/8c06fc1c-4606-4a01-97bb-ac9f213a6c0b)
+![Capture](https://github.com/user-attachments/assets/871a65b6-5738-4433-afc2-2798bb333fcc)
+
 
