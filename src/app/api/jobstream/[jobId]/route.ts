@@ -5,26 +5,22 @@ import { authoptions } from "../../../../../lib/auth-options";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { jobid: string } }
+  { params }: { params: { jobId: string } }
 ) {
-  const { jobid } = params;
+  const { jobId } = params;
   const session = await getServerSession(authoptions);
 
   if (!session?.user.id) {
     return NextResponse.json(
-      {
-        message: "Unauthenticated",
-      },
-      {
-        status: 401,
-      }
+      { message: "Unauthenticated" },
+      { status: 401 }
     );
   }
 
   try {
     const job = await prisma.job.findUnique({
       where: {
-        id: jobid, // Find the job by ID
+        id: jobId,
       },
     });
 
@@ -33,26 +29,18 @@ export async function GET(
     }
 
     return NextResponse.json(
-      {
-        message: "Job fetched successfully",
-        job,
-      },
-      {
-        status: 200,
-      }
+      { message: "Job fetched successfully", job },
+      { status: 200 }
     );
   } catch (e) {
     console.error(e);
     return NextResponse.json(
-      {
-        message: "Internal server error",
-      },
-      {
-        status: 500,
-      }
+      { message: "Internal server error" },
+      { status: 500 }
     );
   }
 }
+
 
 export async function PUT(
   req: NextRequest,
