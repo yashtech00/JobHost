@@ -1,6 +1,6 @@
 # JobHost - Full Stack Next.js Job Portal  
 
-JobHost is a comprehensive job portal application designed to connect job seekers with employers. Built using Next.js, React.js, Node.js, PostgreSQL, and Prisma, it provides a seamless experience for job searching, hiring, and application tracking.  
+JobHost is a comprehensive job portal application designed to connect job seekers with employers. Built using Next.js, React.js, Node.js, PostgreSQL, and Prisma, it provides a seamless experience for job searching, hiring.
 
 ## Features  
 
